@@ -49,9 +49,9 @@ A consuming app can use commons components and composables without installing Pr
 - **FR-19**: `initFaro` failures must not prevent a consumer app from bootstrapping.
 - **FR-20**: Shared Problem Detail and error types must expose generic RFC 7807-compatible fields while keeping Personal Stack-specific extensions optional, documented, and non-mandatory for other consumers.
 - **FR-21**: Consumers must import package APIs from short public coordinates such as `@extratoast/vue-web-commons` and documented subpaths such as `@extratoast/vue-web-commons/theme.css`; consumers must not import from `@extratoast/vue-web-commons/src/...`.
-- **FR-22**: Personal Stack must consume `@extratoast/vue-web-commons` at an exact Renovate-managed version, not a semver range and not a workspace link.
-- **FR-23**: Personal Stack must remain continuously auto-deployed from its own repository after adoption of the package.
-- **FR-24**: Personal Stack adoption must not require publishing, tagging, or versioning Personal Stack itself.
+- **FR-22**: Package documentation must require downstream Personal Stack adoption to consume `@extratoast/vue-web-commons` at an exact Renovate-managed version, not a semver range and not a workspace link.
+- **FR-23**: Package documentation must preserve Personal Stack's continuously auto-deployed repository model after downstream package adoption.
+- **FR-24**: Package documentation must make clear that downstream Personal Stack adoption does not require publishing, tagging, or versioning Personal Stack itself.
 - **FR-25**: The first release must document which exports are generic-now, which exports require injected configuration before extraction, and which exports are intentionally excluded from the first release.
 
 ## Success Criteria
@@ -62,9 +62,9 @@ A consuming app can use commons components and composables without installing Pr
 - **SC-4**: A consumer fixture can import at least one generic-now component, one generic-now composable, one type, one JWT utility, and `initFaro` from public package coordinates with TypeScript declaration resolution passing.
 - **SC-5**: Configuration-focused tests or fixtures demonstrate `useAuth` working with two different current-user endpoints, two different role mappings, and two different CSRF cookie/header combinations without changing package source.
 - **SC-6**: Configuration-focused tests or fixtures demonstrate `useTheme` working with two different storage keys and two different DOM attribute/class strategies without changing package source.
-- **SC-7**: Personal Stack package manifests reference `@extratoast/vue-web-commons` with an exact version string and a Renovate-compatible coordinate.
-- **SC-8**: Personal Stack frontend builds and tests that currently depend on `libs/vue-common` pass after switching to the package coordinate.
-- **SC-9**: Personal Stack deployment documentation or pipeline configuration shows no new requirement to tag, publish, or manually version Personal Stack in order to deploy frontend changes.
+- **SC-7**: Package documentation describes the exact-version dependency coordinate and Renovate-compatible downstream adoption requirement for Personal Stack.
+- **SC-8**: A local consumer fixture demonstrates public-coordinate package imports; Personal Stack frontend build/test validation is deferred to downstream adoption after a package version is published.
+- **SC-9**: Package documentation shows no new requirement to tag, publish, or manually version Personal Stack in order to deploy downstream frontend changes.
 - **SC-10**: A website-oriented consumer fixture can install the package and render generic-now exports without installing PrimeVue or Vuetify.
 
 ## Assumptions
@@ -99,8 +99,8 @@ A consuming app can use commons components and composables without installing Pr
 
 ## Out of Scope
 
-- Implementing the package build, migration, release, or consumer code changes.
-- Publishing `@extratoast/vue-web-commons` to npm.
+- Publishing `@extratoast/vue-web-commons` to npm or GitHub Packages during initial implementation.
+- Migrating Personal Stack consumer manifests or frontend imports during initial implementation.
 - Converging PrimeVue and Vuetify components, or selecting a UI-kit strategy, for the first release.
 - Replacing Personal Stack's application-specific feature components.
 - Migrating `/workspace/website` to the package in the first release.

@@ -1,0 +1,92 @@
+/*
+ * Shared theme tokens and universal base styles for consumers that opt into
+ * this package stylesheet via `@extratoast/vue-web-commons/theme.css`.
+ *
+ * The component classes are intentionally UI-kit-neutral. Consumers using
+ * Tailwind should scan their own source and this package's distributed Vue
+ * files according to their build setup.
+ */
+
+@theme {
+  /*
+   * Dark theme defaults. Light theme overrides land in the
+   * `[data-theme="light"]` block below; `useTheme()` can apply this
+   * attribute to the consumer-provided target.
+   */
+  --color-terminal-green: #4ade80;
+  --color-terminal-cyan: #22d3ee;
+  --color-terminal-amber: #fbbf24;
+  --color-terminal-purple: #a78bfa;
+  --color-terminal-pink: #f472b6;
+  --color-surface-dark: #0a0a0f;
+  --color-surface-card: #12121a;
+  --color-surface-elevated: #1a1a25;
+  --color-surface-border: #2a2a3a;
+  --color-text-primary: #e5e7eb;
+  --color-text-muted: #9ca3af;
+  --color-text-subtle: #4b5563;
+  --color-accent: #6366f1;
+  --color-accent-light: #818cf8;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+}
+
+:root[data-theme='light'] {
+  --color-surface-dark: #e9ebf0;
+  --color-surface-card: #ffffff;
+  --color-surface-elevated: #f4f5f8;
+  --color-surface-border: #c8cad2;
+  --color-text-primary: #18181b;
+  --color-text-muted: #52525b;
+  --color-text-subtle: #6b7280;
+  --color-terminal-green: #15803d;
+  --color-terminal-cyan: #0e7490;
+  --color-terminal-amber: #b45309;
+  --color-terminal-purple: #7c3aed;
+  --color-terminal-pink: #be185d;
+  --color-accent: #4f46e5;
+  --color-accent-light: #6366f1;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-surface-dark);
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-surface-dark);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  color: white;
+}
+
+.glow-accent {
+  box-shadow:
+    0 0 20px color-mix(in srgb, var(--color-accent) 20%, transparent),
+    0 0 60px color-mix(in srgb, var(--color-accent) 5%, transparent);
+}

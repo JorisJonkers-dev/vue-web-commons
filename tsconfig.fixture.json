@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@extratoast/vue-web-commons": ["./dist/index.d.ts"],
+      "@extratoast/vue-web-commons/theme.css": ["./dist/theme.css.d.ts"]
+    }
+  },
+  "include": ["test/consumer-fixture.ts", "env.d.ts"]
+}

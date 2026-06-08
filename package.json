@@ -1,0 +1,67 @@
+{
+  "name": "@extratoast/vue-web-commons",
+  "type": "module",
+  "version": "0.0.0",
+  "private": false,
+  "packageManager": "npm@10.9.8",
+  "description": "Framework-neutral Vue 3 commons for ExtraToast web applications.",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./style.css": {
+      "types": "./dist/style.css.d.ts",
+      "default": "./dist/style.css"
+    },
+    "./theme.css": {
+      "types": "./dist/theme.css.d.ts",
+      "default": "./dist/theme.css"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "typecheck": "vue-tsc --noEmit",
+    "lint": "eslint . --max-warnings 0",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "npm run clean && vite build && node scripts/normalize-dts.mjs && cp src/style.css.d.ts dist/style.css.d.ts && cp src/theme.css dist/theme.css && cp src/theme.css.d.ts dist/theme.css.d.ts",
+    "package:check": "npm run build && npm pack --dry-run && node scripts/check-package.mjs",
+    "fixture:check": "npm run build && vue-tsc -p tsconfig.fixture.json --noEmit"
+  },
+  "peerDependencies": {
+    "@grafana/faro-web-sdk": "^2.7.1",
+    "@grafana/faro-web-tracing": "^2.7.1",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.35",
+    "vue-router": "^5.1.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^9.0.0",
+    "@vitejs/plugin-vue": "^6.0.7",
+    "@vitest/coverage-v8": "^4.1.8",
+    "@vue/test-utils": "^2.4.11",
+    "eslint": "^10.4.1",
+    "jiti": "^2.7.0",
+    "jsdom": "^29.1.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vite-plugin-dts": "^5.0.2",
+    "vitest": "^4.1.8",
+    "vue-tsc": "^3.3.4"
+  }
+}
