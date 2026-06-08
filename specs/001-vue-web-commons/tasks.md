@@ -45,7 +45,7 @@
 - [x] T026 Run `npm run build`.
 - [x] T027 Run `npm run package:check`.
 - [x] T028 Run consumer fixture validation.
-- [ ] T029 Commit, push `impl/initial`, open PR, poll `Pipeline Complete`, fix once if red, and squash-merge when green.
+- [x] T029 Commit, push `impl/initial`, open PR, poll `Pipeline Complete`, fix once if red, and squash-merge when green.
 
 ## Dependencies
 
