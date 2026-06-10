@@ -1,7 +1,7 @@
 {
   "name": "@extratoast/vue-web-commons",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "packageManager": "npm@10.9.8",
   "description": "Framework-neutral Vue 3 commons for ExtraToast web applications.",
