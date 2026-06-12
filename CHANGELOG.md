@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/ExtraToast/vue-web-commons/compare/v0.2.1...v0.3.0) (2026-06-12)
+
+
+### Features
+
+* AppShell layout='rail' left-sidebar variant ([#12](https://github.com/ExtraToast/vue-web-commons/issues/12)) ([eeb8d68](https://github.com/ExtraToast/vue-web-commons/commit/eeb8d686432e5c2bb50fe1fcf9592996e74b9100))
+
 ## [0.2.1](https://github.com/ExtraToast/vue-web-commons/compare/v0.2.0...v0.2.1) (2026-06-10)
 
 
