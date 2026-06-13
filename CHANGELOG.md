@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/ExtraToast/vue-web-commons/compare/v0.3.0...v0.3.1) (2026-06-13)
+
+
+### Bug Fixes
+
+* **app-shell:** move the rail mobile menu trigger to the left ([#14](https://github.com/ExtraToast/vue-web-commons/issues/14)) ([a3b4719](https://github.com/ExtraToast/vue-web-commons/commit/a3b47198eb6f3b0e7f55b969aaa26682c5a31fb8))
+
 ## [0.3.0](https://github.com/ExtraToast/vue-web-commons/compare/v0.2.1...v0.3.0) (2026-06-12)
 
 
