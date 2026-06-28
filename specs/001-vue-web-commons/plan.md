@@ -2,7 +2,7 @@
 
 ## Scope and Boundary
 
-Implement `@extratoast/vue-web-commons` as a standalone Vue 3 library package in this repository. `/workspace/personal-stack`, `/workspace/website`, and `/workspace/repo-template` are read-only references, so downstream Personal Stack adoption is documented but not edited here.
+Implement `@jorisjonkers-dev/vue-web-commons` as a standalone Vue 3 library package in this repository. `/workspace/personal-stack`, `/workspace/website`, and `/workspace/repo-template` are read-only references, so downstream Personal Stack adoption is documented but not edited here.
 
 Spec adjustment: FR-22 through FR-24 and SC-7 through SC-9 are documentation/downstream-adoption requirements for this repository because Personal Stack is explicitly read-only for this implementation.
 
@@ -16,14 +16,14 @@ Spec adjustment: FR-22 through FR-24 and SC-7 through SC-9 are documentation/dow
 - Type checking: `vue-tsc --noEmit`.
 - Linting: ESLint with the same Antfu Vue/TypeScript baseline used by the reference project, scoped to this standalone package.
 - Package peers: Vue, Pinia, Vue Router, `@grafana/faro-web-sdk`, and `@grafana/faro-web-tracing` are peer dependencies and dev dependencies for local test/build only.
-- Release: release-please on `main`; publish-on-tag workflow publishes npm artifacts to GitHub Packages under `@extratoast`.
+- Release: release-please on `main`; release-created tags publish npm artifacts to GitHub Packages under `@jorisjonkers-dev`.
 
 ## Architecture
 
 ### Public Entry Points
 
-- `@extratoast/vue-web-commons`: all runtime exports from `src/index.ts`.
-- `@extratoast/vue-web-commons/theme.css`: copied to `dist/theme.css` and exported as a package subpath.
+- `@jorisjonkers-dev/vue-web-commons`: all runtime exports from `src/index.ts`.
+- `@jorisjonkers-dev/vue-web-commons/theme.css`: copied to `dist/theme.css` and exported as a package subpath.
 
 No public export resolves to `src`. `package.json` uses `main`, `module`, `types`, and `exports` that point at `dist`.
 

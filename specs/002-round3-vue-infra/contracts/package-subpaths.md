@@ -1,6 +1,6 @@
 # Package Subpath Contracts
 
-## `@extratoast/vue-web-commons/config`
+## `@jorisjonkers-dev/vue-web-commons/config`
 
 Exports:
 
@@ -13,7 +13,7 @@ Exports:
 
 The factories return plain configuration objects. Consumers may pass them to `defineConfig` in their own tool config files.
 
-## `@extratoast/vue-web-commons/api-runtime`
+## `@jorisjonkers-dev/vue-web-commons/api-runtime`
 
 Exports:
 
@@ -27,7 +27,7 @@ Exports:
 
 The helpers are fetch-oriented and generator-agnostic. The hey-api helper is structural and introduces no package dependency.
 
-## `@extratoast/vue-web-commons/nginx`
+## `@jorisjonkers-dev/vue-web-commons/nginx`
 
 Exports:
 

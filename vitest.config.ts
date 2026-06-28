@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
-      '@extratoast/vue-web-commons': resolve(__dirname, 'src/index.ts'),
+      '@jorisjonkers-dev/vue-web-commons': resolve(__dirname, 'src/index.ts'),
     },
   },
   test: {

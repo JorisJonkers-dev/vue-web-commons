@@ -2,7 +2,7 @@
 
 ## Overview
 
-`@extratoast/vue-web-commons` must extract the reusable Vue application infrastructure identified in extraction round 3: Vue/Vite testing and architecture presets, generated API runtime helpers for browser clients, and an nginx SPA static-serving template. The package must stay framework-neutral where the current repository already is, must not carry Personal Stack or Website domains, paths, namespaces, or generated-client assumptions, and must keep the package's existing CI contract green.
+`@jorisjonkers-dev/vue-web-commons` must extract the reusable Vue application infrastructure identified in extraction round 3: Vue/Vite testing and architecture presets, generated API runtime helpers for browser clients, and an nginx SPA static-serving template. The package must stay framework-neutral where the current repository already is, must not carry Personal Stack or Website domains, paths, namespaces, or generated-client assumptions, and must keep the package's existing CI contract green.
 
 The round-3 reference repositories remain read-only. This feature ships reusable package code, tests, documentation, and fixtures in this repository only.
 
@@ -46,7 +46,7 @@ A deployment maintainer renders an nginx server block for a Vite-built SPA with 
 - **SC-3**: Unit tests verify API base URL resolution, bearer auth, credentials, CSRF bootstrap caching for unsafe methods, and validation ProblemDetail normalization.
 - **SC-4**: Unit tests verify the optional hey-api wrapper returns generator-compatible options without importing `@hey-api/openapi-ts`.
 - **SC-5**: Unit tests verify privileged and unprivileged nginx output, no-store `index.html`, immutable Vite assets, fallback routing, and optional `/healthz`.
-- **SC-6**: The consumer fixture can import `@extratoast/vue-web-commons/config`, `@extratoast/vue-web-commons/api-runtime`, and `@extratoast/vue-web-commons/nginx` from built declaration files.
+- **SC-6**: The consumer fixture can import `@jorisjonkers-dev/vue-web-commons/config`, `@jorisjonkers-dev/vue-web-commons/api-runtime`, and `@jorisjonkers-dev/vue-web-commons/nginx` from built declaration files.
 - **SC-7**: Existing CI scripts remain the intended validation path: typecheck, lint, Vitest with coverage, build, package check, and fixture check.
 
 ## Assumptions

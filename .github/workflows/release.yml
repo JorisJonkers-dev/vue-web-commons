@@ -39,8 +39,10 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write
     env:
       NODE_VERSION: '22'
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -48,23 +50,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          registry-url: https://npm.pkg.github.com
+          scope: '@jorisjonkers-dev'
           cache: npm
-      - name: Configure GitHub Packages npm registry
-        run: |
-          cat > "$HOME/.npmrc" <<'NPMRC'
-          @extratoast:registry=https://npm.pkg.github.com
-          //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
-          NPMRC
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set package version from release tag
         run: npm version "${RELEASE_TAG#v}" --no-git-tag-version --allow-same-version
         env:
           RELEASE_TAG: ${{ needs.release-please.outputs.tag_name }}
       - run: npm run build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm publish --provenance

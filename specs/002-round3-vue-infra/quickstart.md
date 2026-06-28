@@ -3,7 +3,7 @@
 ## Config Presets
 
 ```ts
-import { createVueViteConfig } from '@extratoast/vue-web-commons/config'
+import { createVueViteConfig } from '@jorisjonkers-dev/vue-web-commons/config'
 // vite.config.ts
 import { defineConfig } from 'vite'
 
@@ -19,7 +19,7 @@ export default defineConfig(createVueViteConfig({
 
 ```js
 // .dependency-cruiser.cjs
-const { createFeatureSlicedDependencyCruiserConfig } = require('@extratoast/vue-web-commons/config')
+const { createFeatureSlicedDependencyCruiserConfig } = require('@jorisjonkers-dev/vue-web-commons/config')
 
 module.exports = createFeatureSlicedDependencyCruiserConfig({
   generatedClientPaths: ['src/shared/services/api/generated', 'src/services/api/generated'],
@@ -29,7 +29,7 @@ module.exports = createFeatureSlicedDependencyCruiserConfig({
 ## API Runtime
 
 ```ts
-import { createApiFetch } from '@extratoast/vue-web-commons/api-runtime'
+import { createApiFetch } from '@jorisjonkers-dev/vue-web-commons/api-runtime'
 
 const apiFetch = createApiFetch({
   baseUrl: '/api',
@@ -45,7 +45,7 @@ const apiFetch = createApiFetch({
 ## Nginx Template
 
 ```ts
-import { createUnprivilegedSpaNginxConfig } from '@extratoast/vue-web-commons/nginx'
+import { createUnprivilegedSpaNginxConfig } from '@jorisjonkers-dev/vue-web-commons/nginx'
 
 const nginxConf = createUnprivilegedSpaNginxConfig({
   listenPort: 8080,

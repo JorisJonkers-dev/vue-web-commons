@@ -2,7 +2,7 @@
 
 ## Overview
 
-`ExtraToast/vue-web-commons` defines a framework-neutral Vue 3 commons package published to npm as `@extratoast/vue-web-commons`. The package extracts the reusable surface currently represented by `/workspace/personal-stack/libs/vue-common` so Personal Stack can consume shared Vue components, composables, observability setup, utilities, and types from a stable external package, and so `/workspace/website` can adopt the same commons later without inheriting Personal Stack application assumptions.
+`JorisJonkers-dev/vue-web-commons` defines a framework-neutral Vue 3 commons package published to npm as `@jorisjonkers-dev/vue-web-commons`. The package extracts the reusable surface currently represented by `/workspace/personal-stack/libs/vue-common` so Personal Stack can consume shared Vue components, composables, observability setup, utilities, and types from a stable external package, and so `/workspace/website` can adopt the same commons later without inheriting Personal Stack application assumptions.
 
 The first release must preserve Personal Stack's current frontend behavior while turning the library into a package with a clean distribution contract: built output in `dist`, generated type declarations, peer dependency boundaries, public publish metadata, and short consumer import coordinates. Personal Stack remains continuously auto-deployed from its own repository and is not converted into a versioned product as part of this extraction.
 
@@ -12,7 +12,7 @@ The reference library currently exposes components (`AppShell`, `BaseButton`, `C
 
 ### Scenario 1: Personal Stack consumes shared commons
 
-A Personal Stack frontend imports shared Vue primitives from `@extratoast/vue-web-commons` using the package's public entry points. The app continues to build, typecheck, test, and auto-deploy without workspace-linking `libs/vue-common` or requiring a Personal Stack release version.
+A Personal Stack frontend imports shared Vue primitives from `@jorisjonkers-dev/vue-web-commons` using the package's public entry points. The app continues to build, typecheck, test, and auto-deploy without workspace-linking `libs/vue-common` or requiring a Personal Stack release version.
 
 ### Scenario 2: Package maintainers publish a reusable Vue library
 
@@ -28,7 +28,7 @@ A consuming app can use commons components and composables without installing Pr
 
 ## Functional Requirements
 
-- **FR-1**: The package name must be `@extratoast/vue-web-commons`, and the package metadata must allow public npm publication rather than marking the package private.
+- **FR-1**: The package name must be `@jorisjonkers-dev/vue-web-commons`, and the package metadata must allow public npm publication rather than marking the package private.
 - **FR-2**: The package must ship built runtime output under `dist` and generated TypeScript declaration files for every public export.
 - **FR-3**: Public `exports`, `main`, `module`, and `types` metadata must point to built package artifacts, not to source files under `src`.
 - **FR-4**: The package metadata must include `publishConfig` appropriate for publishing the scoped package.
@@ -48,8 +48,8 @@ A consuming app can use commons components and composables without installing Pr
 - **FR-18**: `initFaro` must remain opt-in: consumers that do not provide an observability endpoint or do not call the initializer must not be required to initialize Faro.
 - **FR-19**: `initFaro` failures must not prevent a consumer app from bootstrapping.
 - **FR-20**: Shared Problem Detail and error types must expose generic RFC 7807-compatible fields while keeping Personal Stack-specific extensions optional, documented, and non-mandatory for other consumers.
-- **FR-21**: Consumers must import package APIs from short public coordinates such as `@extratoast/vue-web-commons` and documented subpaths such as `@extratoast/vue-web-commons/theme.css`; consumers must not import from `@extratoast/vue-web-commons/src/...`.
-- **FR-22**: Package documentation must require downstream Personal Stack adoption to consume `@extratoast/vue-web-commons` at an exact Renovate-managed version, not a semver range and not a workspace link.
+- **FR-21**: Consumers must import package APIs from short public coordinates such as `@jorisjonkers-dev/vue-web-commons` and documented subpaths such as `@jorisjonkers-dev/vue-web-commons/theme.css`; consumers must not import from `@jorisjonkers-dev/vue-web-commons/src/...`.
+- **FR-22**: Package documentation must require downstream Personal Stack adoption to consume `@jorisjonkers-dev/vue-web-commons` at an exact Renovate-managed version, not a semver range and not a workspace link.
 - **FR-23**: Package documentation must preserve Personal Stack's continuously auto-deployed repository model after downstream package adoption.
 - **FR-24**: Package documentation must make clear that downstream Personal Stack adoption does not require publishing, tagging, or versioning Personal Stack itself.
 - **FR-25**: The first release must document which exports are generic-now, which exports require injected configuration before extraction, and which exports are intentionally excluded from the first release.
@@ -69,7 +69,7 @@ A consuming app can use commons components and composables without installing Pr
 
 ## Assumptions
 
-- The npm package is intended to be public under the `@extratoast` scope.
+- The npm package is intended to be public under the `@jorisjonkers-dev` scope.
 - Consumers are Vue 3 applications and may provide Vue Router, Pinia, and Faro packages only when their selected exports require those integrations.
 - Renovate is available to manage exact-version package updates in Personal Stack.
 - Personal Stack keeps its current continuous deployment model after replacing the workspace-linked package with the published dependency.
@@ -87,7 +87,7 @@ A consuming app can use commons components and composables without installing Pr
 
 ## Key Entities
 
-- **Vue Web Commons Package**: The npm package `@extratoast/vue-web-commons` that exposes reusable Vue 3 components, composables, observability helpers, utilities, types, and optional styles.
+- **Vue Web Commons Package**: The npm package `@jorisjonkers-dev/vue-web-commons` that exposes reusable Vue 3 components, composables, observability helpers, utilities, types, and optional styles.
 - **Built Artifact**: The published package contents under `dist`, including runtime JavaScript and generated declaration files.
 - **Generic-Now Export**: A public export that is reusable across consumers without Personal Stack-specific assumptions beyond normal props/options.
 - **Injection-Required Export**: A public export candidate that must receive consumer-provided configuration before it can be extracted safely.
@@ -99,7 +99,7 @@ A consuming app can use commons components and composables without installing Pr
 
 ## Out of Scope
 
-- Publishing `@extratoast/vue-web-commons` to npm or GitHub Packages during initial implementation.
+- Publishing `@jorisjonkers-dev/vue-web-commons` to npm or GitHub Packages during initial implementation.
 - Migrating Personal Stack consumer manifests or frontend imports during initial implementation.
 - Converging PrimeVue and Vuetify components, or selecting a UI-kit strategy, for the first release.
 - Replacing Personal Stack's application-specific feature components.

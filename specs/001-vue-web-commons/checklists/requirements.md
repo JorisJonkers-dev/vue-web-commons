@@ -13,7 +13,7 @@
 
 ## Requirements Coverage
 
-- [x] Package identity `@extratoast/vue-web-commons` is specified.
+- [x] Package identity `@jorisjonkers-dev/vue-web-commons` is specified.
 - [x] Built `dist` output and generated type declarations are required.
 - [x] Public export metadata is required to reference built artifacts rather than source files.
 - [x] `publishConfig` is required.

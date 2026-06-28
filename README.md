@@ -1,11 +1,11 @@
-# @extratoast/vue-web-commons
+# @jorisjonkers-dev/vue-web-commons
 
-Framework-neutral Vue 3 commons for ExtraToast web applications.
+Framework-neutral Vue 3 commons for Joris Jonkers web applications.
 
 ## Install
 
 ```sh
-npm install @extratoast/vue-web-commons@0.0.0
+npm install @jorisjonkers-dev/vue-web-commons@0.3.1
 ```
 
 Consumers provide Vue runtime integrations as peer dependencies:
@@ -17,15 +17,15 @@ npm install vue pinia vue-router @grafana/faro-web-sdk @grafana/faro-web-tracing
 Import package APIs from public coordinates:
 
 ```ts
-import { BaseButton, useApi, useTheme } from '@extratoast/vue-web-commons'
-import { createApiFetch } from '@extratoast/vue-web-commons/api-runtime'
-import { createVueViteConfig } from '@extratoast/vue-web-commons/config'
-import { createUnprivilegedSpaNginxConfig } from '@extratoast/vue-web-commons/nginx'
-import '@extratoast/vue-web-commons/style.css'
-import '@extratoast/vue-web-commons/theme.css'
+import { BaseButton, useApi, useTheme } from '@jorisjonkers-dev/vue-web-commons'
+import { createApiFetch } from '@jorisjonkers-dev/vue-web-commons/api-runtime'
+import { createVueViteConfig } from '@jorisjonkers-dev/vue-web-commons/config'
+import { createUnprivilegedSpaNginxConfig } from '@jorisjonkers-dev/vue-web-commons/nginx'
+import '@jorisjonkers-dev/vue-web-commons/style.css'
+import '@jorisjonkers-dev/vue-web-commons/theme.css'
 ```
 
-Do not import from `@extratoast/vue-web-commons/src/...`; source files are not part of the package contract.
+Do not import from `@jorisjonkers-dev/vue-web-commons/src/...`; source files are not part of the package contract.
 
 `style.css` contains CSS emitted from Vue components. `theme.css` contains shared CSS tokens and base styles for consumers that opt in.
 
@@ -56,10 +56,10 @@ Intentionally excluded from the first release:
 
 ## Round 3 Infrastructure Helpers
 
-Config helpers live under `@extratoast/vue-web-commons/config` so browser runtime imports stay focused on app code:
+Config helpers live under `@jorisjonkers-dev/vue-web-commons/config` so browser runtime imports stay focused on app code:
 
 ```ts
-import { createVueViteConfig } from '@extratoast/vue-web-commons/config'
+import { createVueViteConfig } from '@jorisjonkers-dev/vue-web-commons/config'
 import { defineConfig } from 'vite'
 
 export default defineConfig(createVueViteConfig({
@@ -79,17 +79,17 @@ The same subpath exports `createVueVitestConfig`, `createVuePlaywrightConfig`, `
 
 ```js
 // .dependency-cruiser.mjs
-import { createFeatureSlicedDependencyCruiserConfig } from '@extratoast/vue-web-commons/config'
+import { createFeatureSlicedDependencyCruiserConfig } from '@jorisjonkers-dev/vue-web-commons/config'
 
 export default createFeatureSlicedDependencyCruiserConfig({
   generatedClientPaths: ['src/shared/services/api/generated', 'src/services/api/generated'],
 })
 ```
 
-Generated API runtime helpers live under `@extratoast/vue-web-commons/api-runtime`:
+Generated API runtime helpers live under `@jorisjonkers-dev/vue-web-commons/api-runtime`:
 
 ```ts
-import { createApiFetch } from '@extratoast/vue-web-commons/api-runtime'
+import { createApiFetch } from '@jorisjonkers-dev/vue-web-commons/api-runtime'
 
 const apiFetch = createApiFetch({
   baseUrl: '/api',
@@ -104,10 +104,10 @@ const apiFetch = createApiFetch({
 
 The runtime helpers are generator-agnostic and include base URL resolution, credentials, bearer auth, CSRF bootstrap for unsafe methods, ProblemDetail validation normalization, and `createHeyApiRuntimeConfig` for `@hey-api/openapi-ts` style clients.
 
-SPA nginx templates live under `@extratoast/vue-web-commons/nginx`:
+SPA nginx templates live under `@jorisjonkers-dev/vue-web-commons/nginx`:
 
 ```ts
-import { createUnprivilegedSpaNginxConfig } from '@extratoast/vue-web-commons/nginx'
+import { createUnprivilegedSpaNginxConfig } from '@jorisjonkers-dev/vue-web-commons/nginx'
 
 const nginxConf = createUnprivilegedSpaNginxConfig({
   listenPort: 8080,
@@ -124,7 +124,7 @@ Personal Stack should consume this package at an exact Renovate-managed version,
 ```json
 {
   "dependencies": {
-    "@extratoast/vue-web-commons": "0.0.0"
+    "@jorisjonkers-dev/vue-web-commons": "0.3.1"
   }
 }
 ```
@@ -135,6 +135,6 @@ Personal Stack build/test validation is deferred until a package version is publ
 
 ## Publishing
 
-Release PRs are managed by release-please. Published tags run the npm publish workflow for GitHub Packages under the `@extratoast` scope.
+Release PRs are managed by release-please. Release-created tags publish to GitHub Packages under the `@jorisjonkers-dev` scope with npm provenance.
 
 New packages on this personal account default to private in GitHub Packages; the owner must set the package public once after the first publish.
