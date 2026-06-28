@@ -1,16 +1,16 @@
-import type { ProblemDetail, Toast } from '@extratoast/vue-web-commons'
+import type { ProblemDetail, Toast } from '@jorisjonkers-dev/vue-web-commons'
 
 import {
   BaseButton,
   decodeJwt,
   initFaro,
   useMutationState,
-} from '@extratoast/vue-web-commons'
-import { createApiFetch, createHeyApiRuntimeConfig } from '@extratoast/vue-web-commons/api-runtime'
-import { createFeatureSlicedDependencyCruiserConfig, createVueTsConfig } from '@extratoast/vue-web-commons/config'
-import { createUnprivilegedSpaNginxConfig } from '@extratoast/vue-web-commons/nginx'
-import '@extratoast/vue-web-commons/style.css'
-import '@extratoast/vue-web-commons/theme.css'
+} from '@jorisjonkers-dev/vue-web-commons'
+import { createApiFetch, createHeyApiRuntimeConfig } from '@jorisjonkers-dev/vue-web-commons/api-runtime'
+import { createFeatureSlicedDependencyCruiserConfig, createVueTsConfig } from '@jorisjonkers-dev/vue-web-commons/config'
+import { createUnprivilegedSpaNginxConfig } from '@jorisjonkers-dev/vue-web-commons/nginx'
+import '@jorisjonkers-dev/vue-web-commons/style.css'
+import '@jorisjonkers-dev/vue-web-commons/theme.css'
 
 const mutation = useMutationState()
 const mutationPending = mutation.pending.value

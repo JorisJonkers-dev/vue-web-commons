@@ -5,7 +5,7 @@
 
 ## Summary
 
-Add three package subpaths to `@extratoast/vue-web-commons`: `./config` for Vue app config and dependency-cruiser presets, `./api-runtime` for generated-client browser runtime helpers, and `./nginx` for Vite SPA nginx config rendering. Keep app-specific values configurable and keep the existing main runtime entry point unchanged.
+Add three package subpaths to `@jorisjonkers-dev/vue-web-commons`: `./config` for Vue app config and dependency-cruiser presets, `./api-runtime` for generated-client browser runtime helpers, and `./nginx` for Vite SPA nginx config rendering. Keep app-specific values configurable and keep the existing main runtime entry point unchanged.
 
 ## Technical Context
 

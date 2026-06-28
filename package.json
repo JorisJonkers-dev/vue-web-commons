@@ -1,15 +1,15 @@
 {
-  "name": "@extratoast/vue-web-commons",
+  "name": "@jorisjonkers-dev/vue-web-commons",
   "type": "module",
   "version": "0.3.1",
   "private": false,
   "packageManager": "npm@10.9.8",
-  "description": "Framework-neutral Vue 3 commons for ExtraToast web applications.",
+  "description": "Framework-neutral Vue 3 commons for Joris Jonkers web applications.",
   "license": "MIT",
-  "homepage": "https://github.com/ExtraToast/vue-web-commons#readme",
+  "homepage": "https://github.com/JorisJonkers-dev/vue-web-commons#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ExtraToast/vue-web-commons.git"
+    "url": "git+https://github.com/JorisJonkers-dev/vue-web-commons.git"
   },
   "exports": {
     ".": {

@@ -1,6 +1,6 @@
 /*
  * Shared theme tokens and universal base styles for consumers that opt into
- * this package stylesheet via `@extratoast/vue-web-commons/theme.css`.
+ * this package stylesheet via `@jorisjonkers-dev/vue-web-commons/theme.css`.
  *
  * The component classes are intentionally UI-kit-neutral. Consumers using
  * Tailwind should scan their own source and this package's distributed Vue
