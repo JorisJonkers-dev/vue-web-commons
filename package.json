@@ -1,7 +1,7 @@
 {
   "name": "@jorisjonkers-dev/vue-web-commons",
   "type": "module",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": false,
   "packageManager": "npm@10.9.8",
   "description": "Framework-neutral Vue 3 commons for Joris Jonkers web applications.",

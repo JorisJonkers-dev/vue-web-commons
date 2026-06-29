@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.4.0...v0.4.1) (2026-06-29)
+
+
+### Bug Fixes
+
+* apply program hygiene to package metadata ([#3](https://github.com/JorisJonkers-dev/vue-web-commons/issues/3)) ([241bbee](https://github.com/JorisJonkers-dev/vue-web-commons/commit/241bbeeaacd5446cd0c4a2cb0e4ebb05e3274876))
+
 ## [0.4.0](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.3.1...v0.4.0) (2026-06-28)
 
 
