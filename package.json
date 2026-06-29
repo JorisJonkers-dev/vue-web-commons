@@ -5,7 +5,7 @@
   "private": false,
   "packageManager": "npm@10.9.8",
   "description": "Framework-neutral Vue 3 commons for Joris Jonkers web applications.",
-  "license": "MIT",
+  "license": "LicenseRef-JorisJonkers-Proprietary-1.0",
   "homepage": "https://github.com/JorisJonkers-dev/vue-web-commons#readme",
   "repository": {
     "type": "git",
