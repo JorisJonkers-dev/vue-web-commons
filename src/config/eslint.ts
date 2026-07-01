@@ -14,7 +14,11 @@ export function createVueEslintConfig(
   ...userConfigs: VueEslintUserConfig[]
 ): ReturnType<typeof antfu> {
   const { ignores, ...restOptions } = options
-  const defaultIgnores = ['dist', 'node_modules', 'coverage', '.council']
+  // `.github-workflows` is a vendored copy of the shared CI workflows repo that CI checks out
+  // beside the sources; it is not this project's code, so it must not be linted. `.github` holds
+  // this repo's own machine-authored workflow YAML — style rules for it are relaxed below, but the
+  // vendored tree is excluded outright.
+  const defaultIgnores = ['dist', 'node_modules', 'coverage', '.council', '.github-workflows']
 
   return antfu(
     {
