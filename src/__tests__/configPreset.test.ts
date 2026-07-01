@@ -148,6 +148,16 @@ describe('vue config presets', () => {
     expect(Array.isArray(config)).toBe(true)
     expect(config.some((item) => item.rules?.['no-console'] === 'error')).toBe(true)
     expect(config.some((item) => item.rules?.['no-console'] === 'warn')).toBe(false)
+
+    expect(
+      config.find((item) => item.name === 'vue-web-commons/yaml-machine-authored-style'),
+    ).toMatchObject({
+      files: ['.github/**/*.y?(a)ml', '**/generated/**/*.y?(a)ml', '**/__generated__/**/*.y?(a)ml'],
+      rules: {
+        'yaml/plain-scalar': 'off',
+        'yaml/quotes': 'off',
+      },
+    })
   })
 })
 

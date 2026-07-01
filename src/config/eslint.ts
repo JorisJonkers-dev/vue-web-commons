@@ -3,6 +3,12 @@ import antfu from '@antfu/eslint-config'
 export type VueEslintConfigOptions = NonNullable<Parameters<typeof antfu>[0]>
 export type VueEslintUserConfig = Parameters<typeof antfu>[1]
 
+const machineAuthoredYamlGlobs = [
+  '.github/**/*.y?(a)ml',
+  '**/generated/**/*.y?(a)ml',
+  '**/__generated__/**/*.y?(a)ml',
+]
+
 export function createVueEslintConfig(
   options: VueEslintConfigOptions = {},
   ...userConfigs: VueEslintUserConfig[]
@@ -83,6 +89,16 @@ export function createVueEslintConfig(
       rules: {
         'ts/no-explicit-any': 'off',
         'ts/explicit-function-return-type': 'off',
+      },
+    },
+    {
+      name: 'vue-web-commons/yaml-machine-authored-style',
+      files: machineAuthoredYamlGlobs,
+      rules: {
+        // Workflows and generated YAML are often emitted by tools or shared CI templates;
+        // keep semantic YAML linting, but do not force hand-authored quote/plain-scalar style.
+        'yaml/plain-scalar': 'off',
+        'yaml/quotes': 'off',
       },
     },
     ...userConfigs,
