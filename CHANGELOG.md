@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.4.1...v0.5.0) (2026-07-01)
+
+
+### Features
+
+* export shared zero-warning frontend quality config ([#6](https://github.com/JorisJonkers-dev/vue-web-commons/issues/6)) ([9145dd1](https://github.com/JorisJonkers-dev/vue-web-commons/commit/9145dd1e85f6705cedd30fdd782a14cb826a15bc))
+
 ## [0.4.1](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.4.0...v0.4.1) (2026-06-29)
 
 ### Bug Fixes
