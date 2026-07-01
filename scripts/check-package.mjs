@@ -7,6 +7,8 @@ const requiredFiles = [
   'dist/index.d.ts',
   'dist/api-runtime/index.js',
   'dist/api-runtime/index.d.ts',
+  'dist/config/eslint.js',
+  'dist/config/eslint.d.ts',
   'dist/config/index.js',
   'dist/config/index.d.ts',
   'dist/nginx/index.js',
@@ -15,6 +17,8 @@ const requiredFiles = [
   'dist/style.css.d.ts',
   'dist/theme.css',
   'dist/theme.css.d.ts',
+  'prettier.config.mjs',
+  'tsconfig.base.json',
 ]
 const requiredPeers = [
   'vue',

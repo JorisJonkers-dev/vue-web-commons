@@ -33,7 +33,9 @@ describe('useFormErrors', () => {
       detail: 'Field `github_link_id` references a github_links row that does not exist',
       context: 'Postgres workspaces_github_link_id_fkey',
     })
-    expect(form.fieldErrorFor('github_link_id')).toBe('References a github_links row that does not exist')
+    expect(form.fieldErrorFor('github_link_id')).toBe(
+      'References a github_links row that does not exist',
+    )
     expect(form.fieldErrorFor('name')).toBeUndefined()
   })
 
@@ -107,7 +109,9 @@ describe('useFormErrors', () => {
         type: 'about:blank',
         title: 'Validation Error',
         status: 422,
-        errors: [{ field: 'email', message: 'must be a valid email', rejectedValue: 'not-an-email' }],
+        errors: [
+          { field: 'email', message: 'must be a valid email', rejectedValue: 'not-an-email' },
+        ],
       }),
     )
 
@@ -135,6 +139,8 @@ describe('useFormErrors', () => {
       }),
     )
 
-    expect(form.fieldErrorFor('github_link_id')).toBe('The linked repository was removed — pick another')
+    expect(form.fieldErrorFor('github_link_id')).toBe(
+      'The linked repository was removed — pick another',
+    )
   })
 })

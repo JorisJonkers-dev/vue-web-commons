@@ -35,7 +35,9 @@ export interface HeyApiRuntimeOptions extends ApiRuntimeOptions {
   throwOnError?: boolean
 }
 
-export interface HeyApiRuntimeConfig<TConfig extends Record<string, unknown> = Record<string, unknown>> {
+export interface HeyApiRuntimeConfig<
+  TConfig extends Record<string, unknown> = Record<string, unknown>,
+> {
   baseUrl?: string
   fetch?: typeof fetch
   credentials?: RequestCredentials
@@ -74,7 +76,9 @@ export function isUnsafeHttpMethod(method: string | undefined): boolean {
   return unsafeMethods.has((method ?? 'GET').toUpperCase())
 }
 
-export function createCsrfBootstrapper(options: CsrfBootstrapOptions): () => Promise<string | null> {
+export function createCsrfBootstrapper(
+  options: CsrfBootstrapOptions,
+): () => Promise<string | null> {
   let inFlight: Promise<string | null> | null = null
   const cacheBootstrap = options.cacheBootstrap ?? true
 
@@ -90,7 +94,7 @@ export function createCsrfBootstrapper(options: CsrfBootstrapOptions): () => Pro
         return token
       })
       .catch(async () => {
-        return await options.readToken?.() ?? null
+        return (await options.readToken?.()) ?? null
       })
       .finally(() => {
         inFlight = null
@@ -118,7 +122,9 @@ export function createApiFetch(options: ApiRuntimeOptions = {}): typeof fetch {
 
   return async (input: RequestInfo | URL, init: RequestInit = {}) => {
     const method = init.method ?? methodFromInput(input)
-    const headers = new Headers(typeof options.headers === 'function' ? options.headers() : options.headers)
+    const headers = new Headers(
+      typeof options.headers === 'function' ? options.headers() : options.headers,
+    )
     new Headers(init.headers).forEach((value, key) => headers.set(key, value))
 
     const token = await resolveBearerToken(options.bearerToken)
@@ -156,8 +162,11 @@ export function createHeyApiRuntimeConfig<TConfig extends Record<string, unknown
   }
 }
 
-export function normalizeProblemDetail(input: unknown, fallback: Partial<ProblemDetail> = {}): ProblemDetail {
-  const source = input && typeof input === 'object' ? input as Record<string, unknown> : {}
+export function normalizeProblemDetail(
+  input: unknown,
+  fallback: Partial<ProblemDetail> = {},
+): ProblemDetail {
+  const source = input && typeof input === 'object' ? (input as Record<string, unknown>) : {}
   const status = numberOr(source.status, fallback.status ?? 500)
   const title = stringOr(source.title, fallback.title ?? 'Request failed')
   const type = stringOr(source.type, fallback.type ?? 'about:blank')
@@ -179,11 +188,14 @@ export function normalizeProblemDetail(input: unknown, fallback: Partial<Problem
 
 export function normalizeValidationErrors(input: unknown): FieldError[] {
   if (input === undefined || input === null) return []
-  if (Array.isArray(input)) return input.flatMap((value, index) => normalizeValidationError(value, String(index)))
+  if (Array.isArray(input))
+    return input.flatMap((value, index) => normalizeValidationError(value, String(index)))
   if (typeof input === 'object') {
     const record = input as Record<string, unknown>
     if (isFieldErrorLike(record)) return normalizeValidationError(record, '')
-    return Object.entries(record).flatMap(([field, value]) => normalizeValidationError(value, field))
+    return Object.entries(record).flatMap(([field, value]) =>
+      normalizeValidationError(value, field),
+    )
   }
   return [{ field: '', message: String(input) }]
 }
@@ -195,24 +207,32 @@ async function requestCsrfToken(options: CsrfBootstrapOptions): Promise<string |
     ...(options.credentials !== undefined ? { credentials: options.credentials } : {}),
   })
   if (!response.ok) return null
-  const data = await response.json().catch(() => null) as unknown
+  const data = (await response.json().catch(() => null)) as unknown
   const token = readPath(data, options.tokenPath ?? ['token'])
   return typeof token === 'string' && token.length > 0 ? token : null
 }
 
 function normalizeValidationError(input: unknown, fallbackField: string): FieldError[] {
   if (input === undefined || input === null) return []
-  if (Array.isArray(input)) return input.flatMap((value) => normalizeValidationError(value, fallbackField))
+  if (Array.isArray(input))
+    return input.flatMap((value) => normalizeValidationError(value, fallbackField))
   if (typeof input === 'object') {
     const record = input as Record<string, unknown>
     if (isFieldErrorLike(record)) {
-      return [{
-        field: stringOr(record.field, fallbackField),
-        message: stringOr(record.message, record.detail ? String(record.detail) : 'Invalid value'),
-        ...('rejectedValue' in record ? { rejectedValue: record.rejectedValue } : {}),
-      }]
+      return [
+        {
+          field: stringOr(record.field, fallbackField),
+          message: stringOr(
+            record.message,
+            record.detail ? String(record.detail) : 'Invalid value',
+          ),
+          ...('rejectedValue' in record ? { rejectedValue: record.rejectedValue } : {}),
+        },
+      ]
     }
-    return Object.entries(record).flatMap(([field, value]) => normalizeValidationError(value, field))
+    return Object.entries(record).flatMap(([field, value]) =>
+      normalizeValidationError(value, field),
+    )
   }
   return [{ field: fallbackField, message: String(input) }]
 }
@@ -221,14 +241,17 @@ function isFieldErrorLike(record: Record<string, unknown>): boolean {
   return 'message' in record || 'field' in record || 'rejectedValue' in record
 }
 
-function resolveRequestInput(input: RequestInfo | URL, options: ApiBaseUrlOptions): RequestInfo | URL {
+function resolveRequestInput(
+  input: RequestInfo | URL,
+  options: ApiBaseUrlOptions,
+): RequestInfo | URL {
   if (typeof input !== 'string') return input
   if (/^[a-z][a-z\d+\-.]*:/i.test(input)) return input
   return joinUrl(resolveApiBaseUrl(options), input)
 }
 
 async function resolveBearerToken(token: ApiRuntimeOptions['bearerToken']): Promise<string | null> {
-  if (typeof token === 'function') return await token() ?? null
+  if (typeof token === 'function') return (await token()) ?? null
   return token ?? null
 }
 

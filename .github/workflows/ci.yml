@@ -15,9 +15,6 @@ permissions:
   contents: read
   packages: read
 
-env:
-  NODE_VERSION: '22'
-
 jobs:
   workflow-lint:
     name: Workflow Lint
@@ -31,46 +28,26 @@ jobs:
           bash /tmp/download-actionlint.bash
           ./actionlint .github/workflows/*.yml
 
-  verify:
-    name: 'Typecheck, Lint, Test'
-    runs-on: ubuntu-latest
-    env:
-      NODE_AUTH_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '${{ env.NODE_VERSION }}'
-          cache: npm
-      - run: npm ci
-      - run: npm run typecheck
-      - run: npm run lint
-      - name: Run tests with coverage gate
-        run: npm test
-
-  build-package:
-    name: Build and Package Check
-    runs-on: ubuntu-latest
-    env:
-      NODE_AUTH_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '${{ env.NODE_VERSION }}'
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-      - run: 'npm run package:check'
-      - run: 'npm run fixture:check'
+  node:
+    name: Node CI
+    uses: JorisJonkers-dev/github-workflows/.github/workflows/node-ci.yml@v0.9.0
+    with:
+      node-version: '22'
+      package-manager: npm
+      install-command: npm ci
+      lint-command: npm run lint && npm run format:check
+      typecheck-command: npm run typecheck
+      test-command: npm test
+      build-command: npm run package:check && npm run fixture:check
+    secrets:
+      packages-token: ${{ secrets.GITHUB_TOKEN }}
 
   pipeline-complete:
     name: Pipeline Complete
     if: always()
     needs:
       - workflow-lint
-      - verify
-      - build-package
+      - node
     runs-on: ubuntu-latest
     steps:
       - name: Verify all gating jobs succeeded

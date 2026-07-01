@@ -9,6 +9,8 @@ export type {
   DependencyCruiserRuleSeverity,
   FeatureSlicedDependencyCruiserOptions,
 } from './dependencyCruiser'
+export { createVueEslintConfig, default as vueEslintConfig } from './eslint'
+export type { VueEslintConfigOptions, VueEslintUserConfig } from './eslint'
 export {
   createVuePlaywrightConfig,
   createVueTsConfig,

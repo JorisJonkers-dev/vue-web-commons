@@ -42,14 +42,18 @@ describe('useAuth', () => {
 
   it('fetchUser supports configured current-user endpoints and role mappings', async () => {
     fetchMock
-      .mockResolvedValueOnce(new Response(JSON.stringify({ id: 'u-1', username: 'bob', role: 'ADMIN' }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      }))
-      .mockResolvedValueOnce(new Response(JSON.stringify({ uuid: 'u-2', handle: 'sam', permissions: ['reader'] }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      }))
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify({ id: 'u-1', username: 'bob', role: 'ADMIN' }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        }),
+      )
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify({ uuid: 'u-2', handle: 'sam', permissions: ['reader'] }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        }),
+      )
 
     const first = useAuth({
       baseUrl: 'https://accounts.example.test',

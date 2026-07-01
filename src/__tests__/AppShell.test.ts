@@ -84,7 +84,9 @@ describe('appShell', () => {
       attachTo: document.body,
     })
     await wrapper.find('[data-testid="nav-menu-trigger"]').trigger('click')
-    const backdrop = document.body.querySelector<HTMLElement>('[data-testid="nav-drawer-backdrop"]')!
+    const backdrop = document.body.querySelector<HTMLElement>(
+      '[data-testid="nav-drawer-backdrop"]',
+    )!
     expect(backdrop).not.toBeNull()
     backdrop.click()
     await wrapper.vm.$nextTick()
@@ -216,7 +218,9 @@ describe('appShell', () => {
     })
     expect(wrapper.find('[data-testid="extras-slot"]').exists()).toBe(true)
     await wrapper.find('[data-testid="nav-menu-trigger"]').trigger('click')
-    expect(document.body.querySelectorAll('[data-testid="extras-slot"]').length).toBeGreaterThanOrEqual(1)
+    expect(
+      document.body.querySelectorAll('[data-testid="extras-slot"]').length,
+    ).toBeGreaterThanOrEqual(1)
     wrapper.unmount()
   })
 })
@@ -244,7 +248,12 @@ describe('rail layout', () => {
 
   it('toggles the collapsed rail state and persists it', async () => {
     const wrapper = mount(AppShell, {
-      props: { navItems: railNavItems, brandMain: 'demo', layout: 'rail', railStorageKey: 'rail-test' },
+      props: {
+        navItems: railNavItems,
+        brandMain: 'demo',
+        layout: 'rail',
+        railStorageKey: 'rail-test',
+      },
       global: { plugins: [makeRouter()] },
     })
 
@@ -291,7 +300,9 @@ describe('rail layout', () => {
     expect(document.body.querySelector('[data-testid="nav-drawer"]')).not.toBeNull()
     expect(document.body.style.overflow).toBe('hidden')
 
-    const backdrop = document.body.querySelector<HTMLElement>('[data-testid="nav-drawer-backdrop"]')!
+    const backdrop = document.body.querySelector<HTMLElement>(
+      '[data-testid="nav-drawer-backdrop"]',
+    )!
     backdrop.click()
     await wrapper.vm.$nextTick()
 

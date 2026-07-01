@@ -16,6 +16,7 @@ the application that imports it.
 
 ```bash
 npm ci
+npm run format:check
 npm run typecheck
 npm run lint
 npm test
@@ -48,6 +49,39 @@ import '@jorisjonkers-dev/vue-web-commons/theme.css'
 Do not import from `@jorisjonkers-dev/vue-web-commons/src/...`; source files are
 not part of the package contract.
 
+## Shared Quality Config
+
+Use the shared ESLint flat config from `eslint.config.ts`:
+
+```ts
+import createVueEslintConfig from '@jorisjonkers-dev/vue-web-commons/eslint'
+
+export default createVueEslintConfig()
+```
+
+Use the shared Prettier config from `prettier.config.mjs`:
+
+```js
+export { default } from '@jorisjonkers-dev/vue-web-commons/prettier'
+```
+
+Use the strict shared TypeScript base from `tsconfig.json`:
+
+```json
+{
+  "extends": "@jorisjonkers-dev/vue-web-commons/tsconfig/base",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue", "env.d.ts"]
+}
+```
+
+The shared defaults are designed for `eslint --max-warnings=0`,
+`tsc --noEmit`, and `prettier --check .` gates.
+
 ## Exports
 
 - Components: `AppShell`, `BaseButton`, `Card`, `Dropdown`, `FormErrors`,
@@ -57,7 +91,7 @@ not part of the package contract.
   `useMutationState`, `useTheme`, `useToast`.
 - Runtime helpers: `createApiFetch`, `createHeyApiRuntimeConfig`, JWT helpers,
   and validation-normalization types.
-- Config helpers: Vue Vite, Vitest, Playwright, TypeScript, and
+- Config helpers: Vue Vite, Vitest, Playwright, TypeScript, ESLint, and
   dependency-cruiser config factories.
 - Nginx helpers: unprivileged SPA config rendering for Vite-built apps.
 

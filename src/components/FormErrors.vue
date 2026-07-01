@@ -28,9 +28,14 @@ defineProps<Props>()
       class="mt-1 text-xs text-red-200/80"
       data-testid="form-errors-retry"
     >
-      Runner is <span class="font-mono">{{ error.runnerStatus }}</span> — retry in {{ error.retryAfterSeconds }}s.
+      Runner is <span class="font-mono">{{ error.runnerStatus }}</span> — retry in
+      {{ error.retryAfterSeconds }}s.
     </p>
-    <p v-else-if="error.context" class="mt-1 font-mono text-xs text-red-200/70" data-testid="form-errors-context">
+    <p
+      v-else-if="error.context"
+      class="mt-1 font-mono text-xs text-red-200/70"
+      data-testid="form-errors-context"
+    >
       {{ error.context }}
     </p>
   </div>

@@ -179,7 +179,9 @@ export function createFeatureSlicedDependencyCruiserForbiddenRules(
   ]
 }
 
-function normalizeOptions(options: FeatureSlicedDependencyCruiserOptions): RequiredFeatureSlicedOptions {
+function normalizeOptions(
+  options: FeatureSlicedDependencyCruiserOptions,
+): RequiredFeatureSlicedOptions {
   const sharedPath = options.sharedPath ?? 'src/shared'
   return {
     featuresPath: options.featuresPath ?? 'src/features',
@@ -189,9 +191,7 @@ function normalizeOptions(options: FeatureSlicedDependencyCruiserOptions): Requi
       'src/features/*/services',
       'src/shared/services',
     ],
-    generatedClientPaths: options.generatedClientPaths ?? [
-      'src/shared/services/api/generated',
-    ],
+    generatedClientPaths: options.generatedClientPaths ?? ['src/shared/services/api/generated'],
     tsConfigFileName: options.tsConfigFileName ?? './tsconfig.json',
     ruleSeverity: options.ruleSeverity ?? 'error',
   }
@@ -199,10 +199,7 @@ function normalizeOptions(options: FeatureSlicedDependencyCruiserOptions): Requi
 
 function pathPrefixPattern(path: string): string {
   const normalized = path.replace(/\\/g, '/').replace(/^\/+/, '').replace(/\/+$/, '')
-  const escaped = normalized
-    .split('*')
-    .map(escapeRegExp)
-    .join('[^/]+')
+  const escaped = normalized.split('*').map(escapeRegExp).join('[^/]+')
   return `^${escaped}/`
 }
 

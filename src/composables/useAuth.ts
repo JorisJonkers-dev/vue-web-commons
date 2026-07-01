@@ -55,7 +55,7 @@ export function useAuth<RawUser = unknown, TUser extends User = User>(
         state.value = null
         return null
       }
-      const raw = await response.json() as RawUser
+      const raw = (await response.json()) as RawUser
       const mapped = options.mapUser ? options.mapUser(raw) : defaultMapUser(raw, options)
       state.value = mapped
       return mapped
@@ -85,7 +85,10 @@ export function useAuth<RawUser = unknown, TUser extends User = User>(
   }
 }
 
-export function cookieCsrfTokenSource(cookieName: string, cookieDocument: Pick<Document, 'cookie'> = document): () => string | null {
+export function cookieCsrfTokenSource(
+  cookieName: string,
+  cookieDocument: Pick<Document, 'cookie'> = document,
+): () => string | null {
   return () => getCookie(cookieName, cookieDocument)
 }
 

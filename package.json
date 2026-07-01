@@ -24,10 +24,15 @@
       "types": "./dist/config/index.d.ts",
       "import": "./dist/config/index.js"
     },
+    "./eslint": {
+      "types": "./dist/config/eslint.d.ts",
+      "import": "./dist/config/eslint.js"
+    },
     "./nginx": {
       "types": "./dist/nginx/index.d.ts",
       "import": "./dist/nginx/index.js"
     },
+    "./prettier": "./prettier.config.mjs",
     "./style.css": {
       "types": "./dist/style.css.d.ts",
       "default": "./dist/style.css"
@@ -36,6 +41,7 @@
       "types": "./dist/theme.css.d.ts",
       "default": "./dist/theme.css"
     },
+    "./tsconfig/base": "./tsconfig.base.json",
     "./package.json": "./package.json"
   },
   "main": "./dist/index.js",
@@ -44,7 +50,9 @@
   "files": [
     "LICENSE",
     "README.md",
-    "dist"
+    "dist",
+    "prettier.config.mjs",
+    "tsconfig.base.json"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
@@ -54,6 +62,8 @@
     "clean": "rm -rf dist",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint . --max-warnings 0",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
     "test": "vitest run --coverage",
     "coverage": "vitest run --coverage",
     "test:watch": "vitest",
@@ -62,18 +72,25 @@
     "fixture:check": "npm run build && vue-tsc -p tsconfig.fixture.json --noEmit"
   },
   "peerDependencies": {
-    "@grafana/faro-web-sdk": "^2.7.1",
-    "@grafana/faro-web-tracing": "^2.7.1",
+    "@antfu/eslint-config": "^9.0.0",
+    "@grafana/faro-web-sdk": "^2.8.2",
+    "@grafana/faro-web-tracing": "^2.8.2",
     "@playwright/test": "^1.0.0",
     "@vitejs/plugin-vue": "^6.0.0",
     "dependency-cruiser": "^17.0.0",
+    "eslint": "^10.4.1",
     "pinia": "^3.0.4",
+    "prettier": "^3.9.4",
+    "typescript": "^6.0.3",
     "vite": "^8.0.0",
     "vitest": "^4.0.0",
     "vue": "^3.5.35",
     "vue-router": "^5.1.0"
   },
   "peerDependenciesMeta": {
+    "@antfu/eslint-config": {
+      "optional": true
+    },
     "@playwright/test": {
       "optional": true
     },
@@ -81,6 +98,15 @@
       "optional": true
     },
     "dependency-cruiser": {
+      "optional": true
+    },
+    "eslint": {
+      "optional": true
+    },
+    "prettier": {
+      "optional": true
+    },
+    "typescript": {
       "optional": true
     },
     "vite": {
@@ -98,10 +124,15 @@
     "eslint": "^10.4.1",
     "jiti": "^2.7.0",
     "jsdom": "^29.1.1",
+    "prettier": "^3.9.4",
     "typescript": "^6.0.3",
     "vite": "^8.0.16",
     "vite-plugin-dts": "^5.0.2",
     "vitest": "^4.1.8",
     "vue-tsc": "^3.3.4"
+  },
+  "overrides": {
+    "glob": "^13.0.6",
+    "undici": "^7.28.0"
   }
 }

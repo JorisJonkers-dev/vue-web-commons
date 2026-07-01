@@ -8,7 +8,9 @@ describe('dropdown', () => {
       slots: { trigger: '<span>Open</span>', default: '<button>Item</button>' },
     })
     expect(wrapper.find('[data-testid="dropdown-menu"]').exists()).toBe(false)
-    expect(wrapper.get('[data-testid="dropdown-trigger"]').attributes('aria-expanded')).toBe('false')
+    expect(wrapper.get('[data-testid="dropdown-trigger"]').attributes('aria-expanded')).toBe(
+      'false',
+    )
   })
 
   it('opens on trigger click', async () => {

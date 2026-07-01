@@ -13,7 +13,10 @@ export async function initFaro(options: InitFaroOptions = {}): Promise<void> {
   if (!options.otlpUrl) return
 
   try {
-    const [sdk, tracing] = await Promise.all([import('@grafana/faro-web-sdk'), import('@grafana/faro-web-tracing')])
+    const [sdk, tracing] = await Promise.all([
+      import('@grafana/faro-web-sdk'),
+      import('@grafana/faro-web-tracing'),
+    ])
     const { initializeFaro, getWebInstrumentations } = sdk
     const { TracingInstrumentation } = tracing
 

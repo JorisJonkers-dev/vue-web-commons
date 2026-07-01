@@ -1,5 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { _resetToastStateForTests, formatProblemDetailBody, useToast } from '../composables/useToast'
+import {
+  _resetToastStateForTests,
+  formatProblemDetailBody,
+  useToast,
+} from '../composables/useToast'
 import { ApiError } from '../types'
 
 beforeEach(() => _resetToastStateForTests())

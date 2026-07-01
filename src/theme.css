@@ -31,11 +31,10 @@
   --app-nav-height: 3.5rem;
   --app-rail-width-collapsed: 4rem;
   --app-rail-width-expanded: 16rem;
-  --font-mono:
-    "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
 }
 
-:root[data-theme="light"] {
+:root[data-theme='light'] {
   --color-surface-dark: #e9ebf0;
   --color-surface-card: #ffffff;
   --color-surface-elevated: #f4f5f8;
@@ -58,7 +57,7 @@ html {
   color-scheme: dark;
 }
 
-:root[data-theme="light"] {
+:root[data-theme='light'] {
   color-scheme: light;
 }
 
@@ -109,12 +108,12 @@ body {
  * behind the taller nav. Applies to every app that consumes the shell.
  */
 @supports (padding: env(safe-area-inset-top)) {
-  [data-testid="app-nav"] {
+  [data-testid='app-nav'] {
     padding-top: env(safe-area-inset-top);
   }
 
-  [data-testid="nav-drawer"],
-  [data-testid="nav-drawer-root"] {
+  [data-testid='nav-drawer'],
+  [data-testid='nav-drawer-root'] {
     padding-top: env(safe-area-inset-top);
   }
 
