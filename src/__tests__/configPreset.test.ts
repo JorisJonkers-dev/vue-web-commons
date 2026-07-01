@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   createFeatureSlicedDependencyCruiserConfig,
   createFeatureSlicedDependencyCruiserForbiddenRules,
+  createVueEslintConfig,
   createVuePlaywrightConfig,
   createVueTsConfig,
   createVueViteConfig,
@@ -128,6 +129,8 @@ describe('vue config presets', () => {
       moduleResolution: 'bundler',
       strict: true,
       exactOptionalPropertyTypes: true,
+      noUnusedLocals: true,
+      noUnusedParameters: true,
       paths: {
         '@/*': ['./src/*'],
         '@generated/*': ['./src/services/api/generated/*'],
@@ -135,6 +138,26 @@ describe('vue config presets', () => {
       types: ['vitest/globals'],
     })
     expect(config.include).toEqual(['src', 'tests'])
+  })
+
+  it('creates a zero-warning ESLint flat config preset', async () => {
+    const config = await createVueEslintConfig({
+      ignores: ['generated'],
+    })
+
+    expect(Array.isArray(config)).toBe(true)
+    expect(config.some((item) => item.rules?.['no-console'] === 'error')).toBe(true)
+    expect(config.some((item) => item.rules?.['no-console'] === 'warn')).toBe(false)
+
+    expect(
+      config.find((item) => item.name === 'vue-web-commons/yaml-machine-authored-style'),
+    ).toMatchObject({
+      files: ['.github/**/*.y?(a)ml', '**/generated/**/*.y?(a)ml', '**/__generated__/**/*.y?(a)ml'],
+      rules: {
+        'yaml/plain-scalar': 'off',
+        'yaml/quotes': 'off',
+      },
+    })
   })
 })
 
@@ -153,8 +176,9 @@ describe('dependency-cruiser feature-sliced preset', () => {
       'shared-components-domain-agnostic',
       'shared-layer-does-not-import-features',
     ])
-    expect(config.forbidden.find((rule) => rule.name === 'generated-client-isolation')?.to.path)
-      .toBe('^src/shared/services/api/generated/')
+    expect(
+      config.forbidden.find((rule) => rule.name === 'generated-client-isolation')?.to.path,
+    ).toBe('^src/shared/services/api/generated/')
   })
 
   it('accepts multiple generated-client roots and service adapter paths', () => {
@@ -170,8 +194,12 @@ describe('dependency-cruiser feature-sliced preset', () => {
     const apiAccess = rules.find((rule) => rule.name === 'api-calls-only-from-services')
 
     expect(generatedIsolation?.severity).toBe('warn')
-    expect(generatedIsolation?.to.path).toBe('(?:^app/generated/blueshell/|^app/generated/discord/)')
-    expect(generatedIsolation?.from.pathNot).toBe('(?:^app/features/[^/]+/api/|^app/shared/api-adapters/)')
+    expect(generatedIsolation?.to.path).toBe(
+      '(?:^app/generated/blueshell/|^app/generated/discord/)',
+    )
+    expect(generatedIsolation?.from.pathNot).toBe(
+      '(?:^app/features/[^/]+/api/|^app/shared/api-adapters/)',
+    )
     expect(apiAccess?.from.path).toBe('^app/features/[^/]+/(?!services/)')
   })
 })

@@ -44,7 +44,9 @@ function kindClasses(kind: 'success' | 'error' | 'info'): string {
               ×
             </button>
           </div>
-          <p v-if="t.body" class="mt-1 whitespace-pre-line text-xs text-[var(--color-text-muted)]">{{ t.body }}</p>
+          <p v-if="t.body" class="mt-1 whitespace-pre-line text-xs text-[var(--color-text-muted)]">
+            {{ t.body }}
+          </p>
         </div>
       </TransitionGroup>
     </div>

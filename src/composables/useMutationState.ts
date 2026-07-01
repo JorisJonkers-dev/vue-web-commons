@@ -58,7 +58,9 @@ export interface MutationState<T = unknown> {
   reset: () => void
 }
 
-export function useMutationState<T = unknown>(options: UseMutationStateOptions = {}): MutationState<T> {
+export function useMutationState<T = unknown>(
+  options: UseMutationStateOptions = {},
+): MutationState<T> {
   const resetDelayMs = options.resetDelayMs ?? 2_000
   const status = ref<MutationStatus>('idle')
   const error = ref<unknown>(null)

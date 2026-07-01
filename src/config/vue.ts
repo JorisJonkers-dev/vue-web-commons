@@ -122,10 +122,7 @@ export function createVueViteConfig(options: VueViteConfigOptions = {}): ViteUse
 
 export function createVueVitestConfig(options: VueVitestConfigOptions = {}): VueVitestConfig {
   return {
-    plugins: [
-      ...(options.includeVuePlugin === false ? [] : [vue()]),
-      ...(options.plugins ?? []),
-    ],
+    plugins: [...(options.includeVuePlugin === false ? [] : [vue()]), ...(options.plugins ?? [])],
     resolve: {
       alias: {
         '@': options.srcDir ?? './src',
@@ -161,7 +158,9 @@ export function createVuePlaywrightConfig(options: VuePlaywrightConfigOptions = 
   const use: JsonObject = {
     baseURL: options.baseURL ?? 'http://127.0.0.1:5173',
     trace: options.trace ?? 'on-first-retry',
-    ...(options.navigationTimeout !== undefined ? { navigationTimeout: options.navigationTimeout } : {}),
+    ...(options.navigationTimeout !== undefined
+      ? { navigationTimeout: options.navigationTimeout }
+      : {}),
     ...(options.reducedMotion !== undefined ? { reducedMotion: options.reducedMotion } : {}),
   }
 
@@ -174,9 +173,7 @@ export function createVuePlaywrightConfig(options: VuePlaywrightConfigOptions = 
     retries: options.retries ?? 1,
     reporter: options.reporter ?? 'html',
     use,
-    projects: options.projects ?? [
-      { name: 'chromium', use: { browserName: 'chromium' } },
-    ],
+    projects: options.projects ?? [{ name: 'chromium', use: { browserName: 'chromium' } }],
     ...(options.webServer ? { webServer: options.webServer } : {}),
   }
 }
@@ -198,6 +195,10 @@ export function createVueTsConfig(options: VueTsConfigOptions = {}): TsConfigJso
       strict: true,
       exactOptionalPropertyTypes: true,
       noUncheckedIndexedAccess: true,
+      noUnusedLocals: true,
+      noUnusedParameters: true,
+      noImplicitOverride: true,
+      noFallthroughCasesInSwitch: true,
       esModuleInterop: true,
       isolatedModules: true,
       skipLibCheck: true,

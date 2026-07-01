@@ -4,6 +4,7 @@
     "paths": {
       "@jorisjonkers-dev/vue-web-commons/api-runtime": ["./dist/api-runtime/index.d.ts"],
       "@jorisjonkers-dev/vue-web-commons/config": ["./dist/config/index.d.ts"],
+      "@jorisjonkers-dev/vue-web-commons/eslint": ["./dist/config/eslint.d.ts"],
       "@jorisjonkers-dev/vue-web-commons/nginx": ["./dist/nginx/index.d.ts"],
       "@jorisjonkers-dev/vue-web-commons": ["./dist/index.d.ts"],
       "@jorisjonkers-dev/vue-web-commons/theme.css": ["./dist/theme.css.d.ts"]

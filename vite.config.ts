@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
 const external = [
+  '@antfu/eslint-config',
   '@playwright/test',
   '@vitejs/plugin-vue',
   'vue',
@@ -28,8 +29,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: {
-        'index': resolve(__dirname, 'src/index.ts'),
+        index: resolve(__dirname, 'src/index.ts'),
         'api-runtime/index': resolve(__dirname, 'src/api-runtime/index.ts'),
+        'config/eslint': resolve(__dirname, 'src/config/eslint.ts'),
         'config/index': resolve(__dirname, 'src/config/index.ts'),
         'nginx/index': resolve(__dirname, 'src/nginx/index.ts'),
       },
@@ -37,8 +39,11 @@ export default defineConfig({
       fileName: (_format, entryName) => `${entryName}.js`,
       cssFileName: 'style',
     },
-    rollupOptions: {
+    rolldownOptions: {
       external,
+      checks: {
+        pluginTimings: false,
+      },
     },
   },
 })

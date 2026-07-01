@@ -22,24 +22,34 @@ afterEach(() => {
 
 describe('generated API runtime', () => {
   it('resolves base URLs from explicit config, env, origin, and fallback', () => {
-    expect(resolveApiBaseUrl({ baseUrl: 'https://api.example.test/' })).toBe('https://api.example.test')
-    expect(resolveApiBaseUrl({
-      env: {
-        VITE_APP_URL: 'https://app-env.example.test/api',
-      },
-    })).toBe('https://app-env.example.test/api')
-    expect(resolveApiBaseUrl({
-      env: {
-        CUSTOM_API: 'https://custom-env.example.test',
-      },
-      envKeys: ['CUSTOM_API'],
-    })).toBe('https://custom-env.example.test')
-    expect(resolveApiBaseUrl({
-      origin: 'https://spa.example.test',
-      defaultPath: '/backend',
-    })).toBe('https://spa.example.test/backend')
+    expect(resolveApiBaseUrl({ baseUrl: 'https://api.example.test/' })).toBe(
+      'https://api.example.test',
+    )
+    expect(
+      resolveApiBaseUrl({
+        env: {
+          VITE_APP_URL: 'https://app-env.example.test/api',
+        },
+      }),
+    ).toBe('https://app-env.example.test/api')
+    expect(
+      resolveApiBaseUrl({
+        env: {
+          CUSTOM_API: 'https://custom-env.example.test',
+        },
+        envKeys: ['CUSTOM_API'],
+      }),
+    ).toBe('https://custom-env.example.test')
+    expect(
+      resolveApiBaseUrl({
+        origin: 'https://spa.example.test',
+        defaultPath: '/backend',
+      }),
+    ).toBe('https://spa.example.test/backend')
     vi.stubGlobal('window', undefined)
-    expect(resolveApiBaseUrl({ fallbackBaseUrl: 'http://localhost:8080/api/' })).toBe('http://localhost:8080/api')
+    expect(resolveApiBaseUrl({ fallbackBaseUrl: 'http://localhost:8080/api/' })).toBe(
+      'http://localhost:8080/api',
+    )
   })
 
   it('classifies unsafe methods', () => {
@@ -51,14 +61,18 @@ describe('generated API runtime', () => {
 
   it('adds base URL, credentials, bearer auth, and CSRF for unsafe requests', async () => {
     fetchMock
-      .mockResolvedValueOnce(new Response(JSON.stringify({ csrf: { token: 'csrf-1' } }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      }))
-      .mockResolvedValueOnce(new Response(JSON.stringify({ ok: true }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      }))
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify({ csrf: { token: 'csrf-1' } }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        }),
+      )
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify({ ok: true }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        }),
+      )
 
     const apiFetch = createApiFetch({
       baseUrl: '/api',
@@ -73,12 +87,19 @@ describe('generated API runtime', () => {
 
     await apiFetch('/orders', { method: 'POST', body: '{}' })
 
-    expect(fetchMock).toHaveBeenNthCalledWith(1, '/api/csrf', { method: 'GET', credentials: 'include' })
-    expect(fetchMock).toHaveBeenNthCalledWith(2, '/api/orders', expect.objectContaining({
-      method: 'POST',
+    expect(fetchMock).toHaveBeenNthCalledWith(1, '/api/csrf', {
+      method: 'GET',
       credentials: 'include',
-      body: '{}',
-    }))
+    })
+    expect(fetchMock).toHaveBeenNthCalledWith(
+      2,
+      '/api/orders',
+      expect.objectContaining({
+        method: 'POST',
+        credentials: 'include',
+        body: '{}',
+      }),
+    )
     const headers = fetchMock.mock.calls[1]![1]!.headers as Headers
     expect(headers.get('Authorization')).toBe('Bearer access-1')
     expect(headers.get('X-CSRF')).toBe('csrf-1')
@@ -108,10 +129,12 @@ describe('generated API runtime', () => {
     const first = bootstrap()
     const second = bootstrap()
     await Promise.resolve()
-    resolveBootstrap(new Response(JSON.stringify({ token: 'csrf-shared' }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    }))
+    resolveBootstrap(
+      new Response(JSON.stringify({ token: 'csrf-shared' }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      }),
+    )
 
     await expect(first).resolves.toBe('csrf-shared')
     await expect(second).resolves.toBe('csrf-shared')
@@ -134,7 +157,9 @@ describe('generated API runtime', () => {
     expect(normalizeValidationErrors([{ field: 'email', message: 'invalid' }])).toEqual([
       { field: 'email', message: 'invalid' },
     ])
-    expect(normalizeValidationErrors({ email: ['required', 'invalid'], age: { message: 'too low' } })).toEqual([
+    expect(
+      normalizeValidationErrors({ email: ['required', 'invalid'], age: { message: 'too low' } }),
+    ).toEqual([
       { field: 'email', message: 'required' },
       { field: 'email', message: 'invalid' },
       { field: 'age', message: 'too low' },
@@ -159,9 +184,7 @@ describe('generated API runtime', () => {
       title: 'Validation failed',
       status: 422,
       traceId: 'trace-1',
-      errors: [
-        { field: 'username', message: 'must be unique', rejectedValue: 'sam' },
-      ],
+      errors: [{ field: 'username', message: 'must be unique', rejectedValue: 'sam' }],
     })
   })
 

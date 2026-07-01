@@ -8,17 +8,21 @@ export interface SpaNginxOptions {
   assetMaxAgeSeconds?: number
   staticMaxAgeSeconds?: number
   staticExtensions?: string[]
-  healthz?: boolean | {
-    path?: string
-    body?: string
-  }
-  gzip?: boolean | {
-    static?: boolean
-    minLength?: number
-    compLevel?: number
-    proxied?: string
-    types?: string[]
-  }
+  healthz?:
+    | boolean
+    | {
+        path?: string
+        body?: string
+      }
+  gzip?:
+    | boolean
+    | {
+        static?: boolean
+        minLength?: number
+        compLevel?: number
+        proxied?: string
+        types?: string[]
+      }
 }
 
 const defaultGzipTypes = [
@@ -36,16 +40,7 @@ const defaultGzipTypes = [
   'font/woff2',
 ]
 
-const defaultStaticExtensions = [
-  'jpg',
-  'jpeg',
-  'png',
-  'webp',
-  'svg',
-  'ico',
-  'txt',
-  'xml',
-]
+const defaultStaticExtensions = ['jpg', 'jpeg', 'png', 'webp', 'svg', 'ico', 'txt', 'xml']
 
 export function createSpaNginxConfig(options: SpaNginxOptions = {}): string {
   const listenPort = options.listenPort ?? 80
@@ -70,7 +65,10 @@ export function createSpaNginxConfig(options: SpaNginxOptions = {}): string {
     indent(`location ^~ ${assetPrefix} {`),
     indent('try_files $uri =404;', 2),
     indent('access_log off;', 2),
-    indent(`add_header Cache-Control "public, max-age=${assetMaxAgeSeconds}, immutable" always;`, 2),
+    indent(
+      `add_header Cache-Control "public, max-age=${assetMaxAgeSeconds}, immutable" always;`,
+      2,
+    ),
     indent('}'),
     '',
     indent(`location ~* \\.(${staticExtensions.map(escapeNginxRegex).join('|')})$ {`),
@@ -92,7 +90,9 @@ export function createSpaNginxConfig(options: SpaNginxOptions = {}): string {
     indent(`try_files $uri $uri/ ${fallbackPath};`, 2),
     indent('}'),
     '}',
-  ].filter((line) => line !== null).join('\n')}\n`
+  ]
+    .filter((line) => line !== null)
+    .join('\n')}\n`
 }
 
 export function createPrivilegedSpaNginxConfig(options: SpaNginxOptions = {}): string {
@@ -115,7 +115,7 @@ function renderGzip(gzip: SpaNginxOptions['gzip']): string {
   const gzipTypes = options.types ?? defaultGzipTypes
   return [
     indent('gzip on;'),
-    ...(options.static ?? true ? [indent('gzip_static on;')] : []),
+    ...((options.static ?? true) ? [indent('gzip_static on;')] : []),
     indent('gzip_vary on;'),
     indent(`gzip_min_length ${options.minLength ?? 256};`),
     indent(`gzip_comp_level ${options.compLevel ?? 6};`),
@@ -128,8 +128,10 @@ function renderGzip(gzip: SpaNginxOptions['gzip']): string {
 
 function renderHealthz(healthz: SpaNginxOptions['healthz']): string | null {
   if (!healthz) return null
-  const path = normalizeLocationPath(typeof healthz === 'object' ? healthz.path ?? '/healthz' : '/healthz')
-  const body = typeof healthz === 'object' ? healthz.body ?? 'ok' : 'ok'
+  const path = normalizeLocationPath(
+    typeof healthz === 'object' ? (healthz.path ?? '/healthz') : '/healthz',
+  )
+  const body = typeof healthz === 'object' ? (healthz.body ?? 'ok') : 'ok'
   return [
     indent(`location = ${path} {`),
     indent(`return 200 "${escapeNginxString(body)}";`, 2),

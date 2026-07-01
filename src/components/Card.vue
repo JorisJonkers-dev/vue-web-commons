@@ -32,9 +32,13 @@ const props = withDefaults(defineProps<Props>(), {
   interactive: 'auto',
 })
 
-const isInteractive = computed(() => (props.interactive === 'auto' ? props.to !== undefined : props.interactive))
+const isInteractive = computed(() =>
+  props.interactive === 'auto' ? props.to !== undefined : props.interactive,
+)
 
-const paddingClass = computed(() => (props.padding === 'none' ? '' : props.padding === 'compact' ? 'p-3' : 'p-4'))
+const paddingClass = computed(() =>
+  props.padding === 'none' ? '' : props.padding === 'compact' ? 'p-3' : 'p-4',
+)
 
 const cardClasses = computed(() => [
   // `block` is load-bearing when the card renders as a RouterLink:

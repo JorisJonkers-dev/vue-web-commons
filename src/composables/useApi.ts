@@ -36,14 +36,16 @@ export function useApi(options: ApiOptions = {}): ApiClient {
   }
 
   return {
-    get: <T>(path: string, init?: RequestInit) => request<T>(path, { ...init, method: init?.method ?? 'GET' }),
+    get: <T>(path: string, init?: RequestInit) =>
+      request<T>(path, { ...init, method: init?.method ?? 'GET' }),
     post: <T>(path: string, body: unknown, init?: RequestInit) =>
       request<T>(path, withSerializedBody('POST', body, options, init)),
     put: <T>(path: string, body: unknown, init?: RequestInit) =>
       request<T>(path, withSerializedBody('PUT', body, options, init)),
     patch: <T>(path: string, body: unknown, init?: RequestInit) =>
       request<T>(path, withSerializedBody('PATCH', body, options, init)),
-    del: (path: string, init?: RequestInit) => request<void>(path, { ...init, method: init?.method ?? 'DELETE' }),
+    del: (path: string, init?: RequestInit) =>
+      request<void>(path, { ...init, method: init?.method ?? 'DELETE' }),
     request,
   }
 }
@@ -55,7 +57,12 @@ export function createRequestUrl(baseUrl: string | undefined, path: string): str
 
 export function defaultSerializeBody(body: unknown): BodyInit | undefined {
   if (body === undefined || body === null) return undefined
-  if (typeof body === 'string' || body instanceof FormData || body instanceof URLSearchParams || body instanceof Blob) {
+  if (
+    typeof body === 'string' ||
+    body instanceof FormData ||
+    body instanceof URLSearchParams ||
+    body instanceof Blob
+  ) {
     return body
   }
   return JSON.stringify(body)
@@ -101,7 +108,7 @@ function isAbsoluteUrl(path: string): boolean {
 export async function problemFromResponse(response: Response): Promise<ApiError> {
   let problem: ProblemDetail
   try {
-    const parsed = await response.json() as ProblemDetail
+    const parsed = (await response.json()) as ProblemDetail
     problem = parsed
   } catch {
     problem = {

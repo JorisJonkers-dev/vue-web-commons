@@ -34,18 +34,19 @@ const props = withDefaults(defineProps<Props>(), {
   newActionLabel: 'New',
 })
 
-const AppShellIcon: FunctionalComponent<{ name: string }> = (iconProps, context) => h('svg', {
-  ...context.attrs,
-  'xmlns': 'http://www.w3.org/2000/svg',
-  'viewBox': '0 0 24 24',
-  'fill': 'none',
-  'stroke': 'currentColor',
-  'stroke-width': '2',
-  'stroke-linecap': 'round',
-  'stroke-linejoin': 'round',
-  'aria-hidden': 'true',
-  'innerHTML': iconMarkup(iconProps.name),
-})
+const AppShellIcon: FunctionalComponent<{ name: string }> = (iconProps, context) =>
+  h('svg', {
+    ...context.attrs,
+    xmlns: 'http://www.w3.org/2000/svg',
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    'stroke-width': '2',
+    'stroke-linecap': 'round',
+    'stroke-linejoin': 'round',
+    'aria-hidden': 'true',
+    innerHTML: iconMarkup(iconProps.name),
+  })
 
 const route = useRoute()
 const { isDark, setTheme } = useTheme(props.themeOptions)
@@ -68,7 +69,9 @@ function toggleTheme(): void {
   setTheme(isDark.value ? 'light' : 'dark')
 }
 
-const themeToggleLabel = computed(() => (isDark.value ? 'Switch to light theme' : 'Switch to dark theme'))
+const themeToggleLabel = computed(() =>
+  isDark.value ? 'Switch to light theme' : 'Switch to dark theme',
+)
 
 const railCollapsed = ref(readInitialRailCollapsed())
 const railExpandedItems = ref<Record<string, boolean>>({})
@@ -137,9 +140,13 @@ function iconMarkup(name: string): string {
   return appShellIcons[name] ?? appShellIcons.terminal ?? ''
 }
 
-watch(railCollapsed, (collapsed) => {
-  persistRailCollapsed(collapsed)
-}, { flush: 'sync' })
+watch(
+  railCollapsed,
+  (collapsed) => {
+    persistRailCollapsed(collapsed)
+  },
+  { flush: 'sync' },
+)
 
 // Drawer state — full-height slide-in panel on `< lg` (anything
 // narrower than 1024 px). The desktop layout shows the inline nav
@@ -184,7 +191,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="layout === 'topbar'" class="min-h-screen bg-[var(--color-surface-dark)] text-[var(--color-text-primary)]">
+  <div
+    v-if="layout === 'topbar'"
+    class="min-h-screen bg-[var(--color-surface-dark)] text-[var(--color-text-primary)]"
+  >
     <nav
       class="fixed top-0 z-40 w-full border-b border-[var(--color-surface-border)]/50 bg-[var(--color-surface-dark)]/90 backdrop-blur-md"
       data-testid="app-nav"
@@ -199,7 +209,10 @@ onBeforeUnmount(() => {
           }}<span class="text-[var(--color-accent-light)]">{{ brandSuffix }}</span>
         </RouterLink>
 
-        <div class="hidden items-center gap-5 font-mono text-xs tracking-tight lg:flex" data-testid="app-nav-desktop">
+        <div
+          class="hidden items-center gap-5 font-mono text-xs tracking-tight lg:flex"
+          data-testid="app-nav-desktop"
+        >
           <RouterLink
             v-for="item in navItems"
             :key="`desk-${item.testid ?? item.label}`"
@@ -271,8 +284,12 @@ onBeforeUnmount(() => {
             class="absolute inset-y-0 right-0 flex w-[88%] max-w-sm flex-col bg-[var(--color-surface-card)] shadow-2xl"
             data-testid="nav-drawer"
           >
-            <header class="flex h-14 items-center justify-between border-b border-[var(--color-surface-border)] px-5">
-              <span class="font-mono text-sm font-bold tracking-tight text-[var(--color-terminal-green)]">
+            <header
+              class="flex h-14 items-center justify-between border-b border-[var(--color-surface-border)] px-5"
+            >
+              <span
+                class="font-mono text-sm font-bold tracking-tight text-[var(--color-terminal-green)]"
+              >
                 <span class="text-[var(--color-text-muted)]">~/</span>{{ brandMain
                 }}<span class="text-[var(--color-accent-light)]">{{ brandSuffix }}</span>
               </span>
@@ -303,7 +320,10 @@ onBeforeUnmount(() => {
                 {{ item.label }}
               </RouterLink>
 
-              <div v-if="$slots.extras" class="mt-4 border-t border-[var(--color-surface-border)] pt-4">
+              <div
+                v-if="$slots.extras"
+                class="mt-4 border-t border-[var(--color-surface-border)] pt-4"
+              >
                 <slot name="extras" :compact="false" />
               </div>
 
@@ -378,7 +398,10 @@ onBeforeUnmount(() => {
     <aside
       class="fixed inset-y-0 left-0 z-40 hidden w-[var(--rail-w)] flex-col border-r border-[var(--color-surface-border)]/50 bg-[var(--color-surface-dark)]/95 px-2 transition-[width] duration-200 lg:flex"
       data-testid="app-rail"
-      style="padding-top: calc(env(safe-area-inset-top) + 0.75rem); padding-bottom: calc(env(safe-area-inset-bottom) + 0.75rem)"
+      style="
+        padding-top: calc(env(safe-area-inset-top) + 0.75rem);
+        padding-bottom: calc(env(safe-area-inset-bottom) + 0.75rem);
+      "
     >
       <div class="flex h-11 items-center gap-2 px-1">
         <button
@@ -487,7 +510,10 @@ onBeforeUnmount(() => {
         </div>
       </nav>
 
-      <div v-if="$slots.extras && !railCollapsed" class="mt-4 border-t border-[var(--color-surface-border)] px-1 pt-4">
+      <div
+        v-if="$slots.extras && !railCollapsed"
+        class="mt-4 border-t border-[var(--color-surface-border)] px-1 pt-4"
+      >
         <slot name="extras" :compact="railCollapsed" />
       </div>
 
@@ -536,8 +562,12 @@ onBeforeUnmount(() => {
             class="absolute inset-y-0 left-0 flex w-[88%] max-w-sm flex-col bg-[var(--color-surface-card)] shadow-2xl"
             data-testid="nav-drawer"
           >
-            <header class="flex h-14 items-center justify-between border-b border-[var(--color-surface-border)] px-5">
-              <span class="font-mono text-sm font-bold tracking-tight text-[var(--color-terminal-green)]">
+            <header
+              class="flex h-14 items-center justify-between border-b border-[var(--color-surface-border)] px-5"
+            >
+              <span
+                class="font-mono text-sm font-bold tracking-tight text-[var(--color-terminal-green)]"
+              >
                 <span class="text-[var(--color-text-muted)]">~/</span>{{ brandMain
                 }}<span class="text-[var(--color-accent-light)]">{{ brandSuffix }}</span>
               </span>
@@ -585,7 +615,10 @@ onBeforeUnmount(() => {
                 </RouterLink>
               </template>
 
-              <div v-if="$slots.extras" class="mt-4 border-t border-[var(--color-surface-border)] pt-4">
+              <div
+                v-if="$slots.extras"
+                class="mt-4 border-t border-[var(--color-surface-border)] pt-4"
+              >
                 <slot name="extras" :compact="false" />
               </div>
 

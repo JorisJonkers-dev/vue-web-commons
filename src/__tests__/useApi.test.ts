@@ -128,7 +128,10 @@ describe('useApi', () => {
     // even when the backend had accepted the command.
     fetchMock.mockResolvedValueOnce(new Response('', { status: 202 }))
     const api = useApi()
-    const result = await api.post('/repositories/abc/key', { privateKeyOpenssh: 'x', publicKeyOpenssh: 'y' })
+    const result = await api.post('/repositories/abc/key', {
+      privateKeyOpenssh: 'x',
+      publicKeyOpenssh: 'y',
+    })
     expect(result).toBeUndefined()
   })
 
@@ -144,7 +147,9 @@ describe('useApi', () => {
     // 200 must not crash the client. The endpoint is non-JSON; the
     // caller's `T` is therefore irrelevant, and `undefined` is the
     // honest default.
-    fetchMock.mockResolvedValueOnce(new Response('OK', { status: 200, headers: { 'Content-Type': 'text/plain' } }))
+    fetchMock.mockResolvedValueOnce(
+      new Response('OK', { status: 200, headers: { 'Content-Type': 'text/plain' } }),
+    )
     const api = useApi()
     const result = await api.get('/healthz')
     expect(result).toBeUndefined()

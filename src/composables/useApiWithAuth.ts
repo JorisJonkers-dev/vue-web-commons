@@ -25,7 +25,12 @@ export function useApiWithAuth(options: ApiWithAuthOptions = {}): ApiClient {
     const body = init.body ?? null
     const headers = buildHeaders(options.headers, init.headers, body)
 
-    if (method !== 'GET' && method !== 'HEAD' && options.csrfTokenSource && options.csrfHeaderName) {
+    if (
+      method !== 'GET' &&
+      method !== 'HEAD' &&
+      options.csrfTokenSource &&
+      options.csrfHeaderName
+    ) {
       const csrf = await options.csrfTokenSource()
       if (csrf) headers.set(options.csrfHeaderName, csrf)
     }
@@ -61,14 +66,16 @@ export function useApiWithAuth(options: ApiWithAuthOptions = {}): ApiClient {
   }
 
   return {
-    get: <T>(path: string, init?: RequestInit) => request<T>(path, { ...init, method: init?.method ?? 'GET' }),
+    get: <T>(path: string, init?: RequestInit) =>
+      request<T>(path, { ...init, method: init?.method ?? 'GET' }),
     post: <T>(path: string, body: unknown, init?: RequestInit) =>
       request<T>(path, withSerializedBody('POST', body, options, init)),
     put: <T>(path: string, body: unknown, init?: RequestInit) =>
       request<T>(path, withSerializedBody('PUT', body, options, init)),
     patch: <T>(path: string, body: unknown, init?: RequestInit) =>
       request<T>(path, withSerializedBody('PATCH', body, options, init)),
-    del: (path: string, init?: RequestInit) => request<void>(path, { ...init, method: init?.method ?? 'DELETE' }),
+    del: (path: string, init?: RequestInit) =>
+      request<void>(path, { ...init, method: init?.method ?? 'DELETE' }),
     request,
   }
 }

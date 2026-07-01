@@ -67,8 +67,17 @@ function onKeyDown(event: KeyboardEvent, value: string): void {
 
 <template>
   <div data-testid="tabs">
-    <div role="tablist" :aria-label="ariaLabel" class="flex gap-1 border-b border-[var(--color-surface-border)]">
-      <slot name="tabs" :active="active" :activate="(v: string) => (active = v)" :on-key-down="onKeyDown" />
+    <div
+      role="tablist"
+      :aria-label="ariaLabel"
+      class="flex gap-1 border-b border-[var(--color-surface-border)]"
+    >
+      <slot
+        name="tabs"
+        :active="active"
+        :activate="(v: string) => (active = v)"
+        :on-key-down="onKeyDown"
+      />
     </div>
     <div class="mt-4">
       <slot />

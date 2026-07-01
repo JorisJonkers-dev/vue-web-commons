@@ -39,7 +39,9 @@ interface ThemeStore<TMode extends string> {
 
 const stores = new Map<string, ThemeStore<string>>()
 
-export function useTheme<TMode extends string = ThemeMode>(options: UseThemeOptions<TMode> = {}): ThemeApi<TMode> {
+export function useTheme<TMode extends string = ThemeMode>(
+  options: UseThemeOptions<TMode> = {},
+): ThemeApi<TMode> {
   const normalized = normalizeOptions(options)
   const key = storeKey(normalized)
   const existing = stores.get(key)
@@ -61,10 +63,14 @@ export function useTheme<TMode extends string = ThemeMode>(options: UseThemeOpti
 
   applyTheme(normalized, mode.value, resolvedMode.value)
 
-  watch(mode, (nextMode) => {
-    persistMode(normalized, nextMode)
-    applyTheme(normalized, nextMode, normalized.resolveMode(nextMode))
-  }, { flush: 'sync' })
+  watch(
+    mode,
+    (nextMode) => {
+      persistMode(normalized, nextMode)
+      applyTheme(normalized, nextMode, normalized.resolveMode(nextMode))
+    },
+    { flush: 'sync' },
+  )
 
   registerSystemPreferenceListener(() => {
     if (mode.value === 'system') {
@@ -87,8 +93,11 @@ export function _resetThemeStateForTests(): void {
   stores.clear()
 }
 
-function normalizeOptions<TMode extends string>(options: UseThemeOptions<TMode>): RequiredOptions<TMode> {
-  const allowedModes = options.allowedModes ?? (['light', 'dark', 'system'] as unknown as readonly TMode[])
+function normalizeOptions<TMode extends string>(
+  options: UseThemeOptions<TMode>,
+): RequiredOptions<TMode> {
+  const allowedModes =
+    options.allowedModes ?? (['light', 'dark', 'system'] as unknown as readonly TMode[])
   return {
     storageKey: options.storageKey === undefined ? 'theme' : options.storageKey,
     defaultMode: options.defaultMode ?? ('system' as TMode),
@@ -130,7 +139,11 @@ function persistMode<TMode extends string>(options: RequiredOptions<TMode>, mode
   }
 }
 
-function applyTheme<TMode extends string>(options: RequiredOptions<TMode>, mode: TMode, resolved: string): void {
+function applyTheme<TMode extends string>(
+  options: RequiredOptions<TMode>,
+  mode: TMode,
+  resolved: string,
+): void {
   if (!options.applyStyles) return
   const target = resolveTarget(options.target)
   if (!target) return
@@ -159,7 +172,7 @@ function registerSystemPreferenceListener(onChange: () => void): void {
 }
 
 function resolveTarget(target: ThemeTarget): Element | null {
-  return typeof target === 'function' ? target() ?? null : target
+  return typeof target === 'function' ? (target() ?? null) : target
 }
 
 function defaultTarget(): Element | null {

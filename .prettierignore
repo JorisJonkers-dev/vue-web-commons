@@ -1,0 +1,7 @@
+# Vendored CI actions tree checked out by the shared workflows in CI; not this repo's code.
+.github-workflows
+
+# Build output / dependencies
+dist
+node_modules
+coverage
