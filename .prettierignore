@@ -1,3 +1,6 @@
+# Machine-generated — not hand-formatted (release-please owns CHANGELOG)
+CHANGELOG.md
+
 # Vendored CI actions tree checked out by the shared workflows in CI; not this repo's code.
 .github-workflows
 
