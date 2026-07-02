@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.0](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.4.1...v0.5.0) (2026-07-02)
+
+
+### Features
+
+* export shared zero-warning frontend quality config ([#6](https://github.com/JorisJonkers-dev/vue-web-commons/issues/6)) ([9145dd1](https://github.com/JorisJonkers-dev/vue-web-commons/commit/9145dd1e85f6705cedd30fdd782a14cb826a15bc))
+
+
+### Bug Fixes
+
+* ignore machine-generated CHANGELOG and vendored tree in prettier ([#8](https://github.com/JorisJonkers-dev/vue-web-commons/issues/8)) ([d82933b](https://github.com/JorisJonkers-dev/vue-web-commons/commit/d82933b30fa8f5b2508db4d050ee2ec1e8be4d68))
+
 ## [0.4.1](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.4.0...v0.4.1) (2026-06-29)
 
 ### Bug Fixes
