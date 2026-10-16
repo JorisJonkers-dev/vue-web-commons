@@ -23,10 +23,22 @@ npm test
 npm run package:check
 ```
 
-Install the published package from GitHub Packages:
+Install the published package from GitHub Packages, which needs a token with package read access
+even though the package is public:
 
 ```bash
-npm install @jorisjonkers-dev/vue-web-commons@0.4.0
+npm install @jorisjonkers-dev/vue-web-commons@0.6.0
+```
+
+A public repository can install it without a token from the tarball attached to each GitHub
+Release, at an exact version:
+
+```json
+{
+  "devDependencies": {
+    "@jorisjonkers-dev/vue-web-commons": "https://github.com/JorisJonkers-dev/vue-web-commons/releases/download/v0.7.0/jorisjonkers-dev-vue-web-commons-0.7.0.tgz"
+  }
+}
 ```
 
 Consumers provide Vue runtime integrations as peer dependencies:
