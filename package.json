@@ -28,6 +28,10 @@
       "types": "./dist/config/eslint.d.ts",
       "import": "./dist/config/eslint.js"
     },
+    "./eslint-testing": {
+      "types": "./dist/config/playwrightSteps.d.ts",
+      "import": "./dist/config/playwrightSteps.js"
+    },
     "./nginx": {
       "types": "./dist/nginx/index.d.ts",
       "import": "./dist/nginx/index.js"
