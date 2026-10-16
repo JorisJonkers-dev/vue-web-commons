@@ -34,7 +34,11 @@ A public repository can install it without a token from the tarball attached to 
 Release, at an exact version:
 
 ```json
-"@jorisjonkers-dev/vue-web-commons": "https://github.com/JorisJonkers-dev/vue-web-commons/releases/download/v0.7.0/jorisjonkers-dev-vue-web-commons-0.7.0.tgz"
+{
+  "devDependencies": {
+    "@jorisjonkers-dev/vue-web-commons": "https://github.com/JorisJonkers-dev/vue-web-commons/releases/download/v0.7.0/jorisjonkers-dev-vue-web-commons-0.7.0.tgz"
+  }
+}
 ```
 
 Consumers provide Vue runtime integrations as peer dependencies:
