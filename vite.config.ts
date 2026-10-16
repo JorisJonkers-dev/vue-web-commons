@@ -32,6 +32,7 @@ export default defineConfig({
         index: resolve(__dirname, 'src/index.ts'),
         'api-runtime/index': resolve(__dirname, 'src/api-runtime/index.ts'),
         'config/eslint': resolve(__dirname, 'src/config/eslint.ts'),
+        'config/playwrightSteps': resolve(__dirname, 'src/config/playwrightSteps.ts'),
         'config/index': resolve(__dirname, 'src/config/index.ts'),
         'nginx/index': resolve(__dirname, 'src/nginx/index.ts'),
       },

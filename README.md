@@ -73,10 +73,11 @@ export default createVueEslintConfig()
 
 A Playwright journey longer than a few actions must name its stages with `test.step`, so a
 failure says which stage broke (the estate testing standards). Any flat config can add the rule,
-with or without `createVueEslintConfig`:
+with or without `createVueEslintConfig`. Import it from `./eslint-testing`, which loads nothing but
+the rule, so a repository that does not use `@antfu/eslint-config` need not install it:
 
 ```ts
-import { playwrightStepsConfig } from '@jorisjonkers-dev/vue-web-commons/eslint'
+import { playwrightStepsConfig } from '@jorisjonkers-dev/vue-web-commons/eslint-testing'
 
 export default [
   // ...the repository's own config
