@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.6.0...v0.7.0) (2026-10-16)
+
+
+### Features
+
+* attach the packed package to each GitHub Release ([#27](https://github.com/JorisJonkers-dev/vue-web-commons/issues/27)) ([c133f84](https://github.com/JorisJonkers-dev/vue-web-commons/commit/c133f8478394a0d0e50752541e249eaf8d6e4f71))
+
 ## [0.6.0](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.5.0...v0.6.0) (2026-10-16)
 
 
