@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.7.0...v0.8.0) (2026-10-16)
+
+
+### Features
+
+* an eslint-testing entry that loads the Playwright rule without @antfu/eslint-config ([#29](https://github.com/JorisJonkers-dev/vue-web-commons/issues/29)) ([bfe4681](https://github.com/JorisJonkers-dev/vue-web-commons/commit/bfe46817bfff678a47c526f756f9bc3a4f251916))
+
 ## [0.7.0](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.6.0...v0.7.0) (2026-10-16)
 
 
