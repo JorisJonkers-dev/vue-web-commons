@@ -110,3 +110,5 @@ export function createVueEslintConfig(
 }
 
 export default createVueEslintConfig
+
+export { journeySteps, playwrightStepsConfig, testingPlugin } from './playwrightSteps'

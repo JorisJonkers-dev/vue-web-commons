@@ -59,6 +59,19 @@ import createVueEslintConfig from '@jorisjonkers-dev/vue-web-commons/eslint'
 export default createVueEslintConfig()
 ```
 
+A Playwright journey longer than a few actions must name its stages with `test.step`, so a
+failure says which stage broke (the estate testing standards). Any flat config can add the rule,
+with or without `createVueEslintConfig`:
+
+```ts
+import { playwrightStepsConfig } from '@jorisjonkers-dev/vue-web-commons/eslint'
+
+export default [
+  // ...the repository's own config
+  playwrightStepsConfig(), // e2e specs, more than 8 awaited actions; or ({ files, max })
+]
+```
+
 Use the shared Prettier config from `prettier.config.mjs`:
 
 ```js
