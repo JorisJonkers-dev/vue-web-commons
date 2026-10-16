@@ -21,6 +21,15 @@ function declaresTest(callee: Rule.Node['parent'] | Node): boolean {
   )
 }
 
+/** The function body of a Playwright test declaration, or undefined for any other call. */
+function testBody(
+  node: Rule.Node & { type: 'CallExpression' },
+): (Rule.Node & { body: { type: 'BlockStatement'; body: Rule.Node[] } }) | undefined {
+  const body = node.arguments[1]
+  const isTest = declaresTest(node.callee as Node) && body !== undefined && 'body' in body
+  return isTest && body.body.type === 'BlockStatement' ? (body as never) : undefined
+}
+
 export const journeySteps: Rule.RuleModule = {
   meta: {
     type: 'suggestion',
@@ -37,14 +46,8 @@ export const journeySteps: Rule.RuleModule = {
     const max: number = (context.options[0] as { max?: number } | undefined)?.max ?? DEFAULT_MAX
     return {
       CallExpression(node) {
-        const body = node.arguments[1]
-        if (
-          !declaresTest(node.callee as Node) ||
-          !body ||
-          !('body' in body) ||
-          body.body.type !== 'BlockStatement'
-        )
-          return
+        const body = testBody(node)
+        if (!body) return
         const awaited = body.body.body.filter(
           (s) => s.type === 'ExpressionStatement' && s.expression.type === 'AwaitExpression',
         ).length

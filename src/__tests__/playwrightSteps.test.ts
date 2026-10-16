@@ -1,8 +1,7 @@
 import { RuleTester } from 'eslint'
-import { afterAll, describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { journeySteps, playwrightStepsConfig } from '../config/playwrightSteps'
 
-RuleTester.afterAll = afterAll
 RuleTester.describe = describe
 RuleTester.it = it
 
