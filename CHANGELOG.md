@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.5.0...v0.6.0) (2026-10-16)
+
+
+### Features
+
+* a lint rule that makes a long Playwright journey name its stages ([#25](https://github.com/JorisJonkers-dev/vue-web-commons/issues/25)) ([941d14f](https://github.com/JorisJonkers-dev/vue-web-commons/commit/941d14fbb5c34e080205ca0d5d8862367f9f4cfb))
+
 ## [0.5.0](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.4.1...v0.5.0) (2026-07-02)
 
 
