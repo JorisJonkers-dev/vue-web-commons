@@ -35,14 +35,19 @@ describe('a Playwright journey names its stages', () => {
       },
       {
         name: 'a test with no function body is not read',
-        code: 'test(\'a fixture-only test\', helper)',
+        code: "test('a fixture-only test', helper)",
       },
     ],
     invalid: [
       {
         name: 'a long journey without steps is refused',
         code: `test('a long one', async ({ page }) => {\n${actions(9)}\n})`,
-        errors: [{ message: 'This journey takes 9 awaited actions without naming a stage: wrap each stage in test.step(\'…\') (more than 8).' }],
+        errors: [
+          {
+            message:
+              "This journey takes 9 awaited actions without naming a stage: wrap each stage in test.step('…') (more than 8).",
+          },
+        ],
       },
       {
         name: 'test.only is read as a test',

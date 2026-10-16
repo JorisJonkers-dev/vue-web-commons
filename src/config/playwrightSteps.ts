@@ -12,24 +12,42 @@ type Node = Rule.Node & { type: string }
 /** Whether a call is test(...) or test.only(...), the calls that declare a Playwright test. */
 function declaresTest(callee: Rule.Node['parent'] | Node): boolean {
   if (callee?.type === 'Identifier') return callee.name === 'test'
-  return callee?.type === 'MemberExpression'
-    && callee.object.type === 'Identifier' && callee.object.name === 'test'
-    && callee.property.type === 'Identifier' && callee.property.name === 'only'
+  return (
+    callee?.type === 'MemberExpression' &&
+    callee.object.type === 'Identifier' &&
+    callee.object.name === 'test' &&
+    callee.property.type === 'Identifier' &&
+    callee.property.name === 'only'
+  )
 }
 
 export const journeySteps: Rule.RuleModule = {
   meta: {
     type: 'suggestion',
     docs: { description: 'Require test.step in a Playwright test with many awaited actions.' },
-    schema: [{ type: 'object', properties: { max: { type: 'integer', minimum: 1 } }, additionalProperties: false }],
+    schema: [
+      {
+        type: 'object',
+        properties: { max: { type: 'integer', minimum: 1 } },
+        additionalProperties: false,
+      },
+    ],
   },
   create(context) {
     const max: number = (context.options[0] as { max?: number } | undefined)?.max ?? DEFAULT_MAX
     return {
       CallExpression(node) {
         const body = node.arguments[1]
-        if (!declaresTest(node.callee as Node) || !body || !('body' in body) || body.body.type !== 'BlockStatement') return
-        const awaited = body.body.body.filter((s) => s.type === 'ExpressionStatement' && s.expression.type === 'AwaitExpression').length
+        if (
+          !declaresTest(node.callee as Node) ||
+          !body ||
+          !('body' in body) ||
+          body.body.type !== 'BlockStatement'
+        )
+          return
+        const awaited = body.body.body.filter(
+          (s) => s.type === 'ExpressionStatement' && s.expression.type === 'AwaitExpression',
+        ).length
         if (awaited <= max || context.sourceCode.getText(body).includes('test.step(')) return
         context.report({
           node,
@@ -44,7 +62,9 @@ export const journeySteps: Rule.RuleModule = {
 export const testingPlugin: ESLint.Plugin = { rules: { 'journey-steps': journeySteps } }
 
 /** A flat config block turning journey-steps on for a repository's Playwright specs. */
-export function playwrightStepsConfig(options: { files?: string[]; max?: number } = {}): Linter.Config {
+export function playwrightStepsConfig(
+  options: { files?: string[]; max?: number } = {},
+): Linter.Config {
   return {
     files: options.files ?? ['**/e2e/**/*.spec.ts', '**/tests/e2e/**/*.ts'],
     plugins: { 'jorisjonkers-testing': testingPlugin },
