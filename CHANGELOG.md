@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.8.0...v0.9.0) (2026-10-20)
+
+
+### Features
+
+* @jorisjonkers-dev/principal, the identity Principal adapter for Node backends and Vue apps ([#35](https://github.com/JorisJonkers-dev/vue-web-commons/issues/35)) ([2e231f8](https://github.com/JorisJonkers-dev/vue-web-commons/commit/2e231f8ecc2277bf6c1305f7e8404a6af725d7a1))
+
 ## [0.8.0](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.7.0...v0.8.0) (2026-10-16)
 
 
