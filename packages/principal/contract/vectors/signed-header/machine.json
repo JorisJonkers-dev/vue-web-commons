@@ -16,7 +16,9 @@
   "principal": {
     "subject": "00000000-0000-4000-8000-0000000000b7",
     "kind": "machine",
-    "roles": ["backup"],
+    "roles": [
+      "backup"
+    ],
     "via": "machine",
     "twoFactor": false,
     "ver": "1.1"

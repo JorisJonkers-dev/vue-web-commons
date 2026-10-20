@@ -66,10 +66,7 @@
   "allOf": [
     {
       "if": { "properties": { "kind": { "const": "user" } } },
-      "then": {
-        "required": ["email", "name"],
-        "properties": { "via": { "not": { "const": "machine" } } }
-      }
+      "then": { "required": ["email", "name"], "properties": { "via": { "not": { "const": "machine" } } } }
     },
     {
       "if": { "properties": { "kind": { "const": "machine" } } },

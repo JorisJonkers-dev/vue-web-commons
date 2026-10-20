@@ -18,7 +18,10 @@
     "kind": "user",
     "email": "ada@example.org",
     "name": "Ada Lovelace",
-    "roles": ["user", "editor"],
+    "roles": [
+      "user",
+      "editor"
+    ],
     "via": "session",
     "twoFactor": true,
     "twoFactorAt": "2026-10-20T11:45:00Z",

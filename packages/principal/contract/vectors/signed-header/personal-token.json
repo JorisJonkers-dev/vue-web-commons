@@ -18,7 +18,10 @@
     "kind": "user",
     "email": "ada@example.org",
     "name": "Ada Lovelace",
-    "roles": ["user", "editor"],
+    "roles": [
+      "user",
+      "editor"
+    ],
     "via": "personal-token",
     "twoFactor": false,
     "ver": "1.1"

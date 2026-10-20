@@ -7,14 +7,18 @@
       "sub": "mcp_6f1d0c2e"
     },
     "active": true,
-    "aud": ["web"],
+    "aud": [
+      "web"
+    ],
     "client_id": "web",
     "email": "ada@example.org",
     "email_verified": true,
     "exp": 1795089600,
     "kind": "user",
     "name": "Ada",
-    "roles": ["user"],
+    "roles": [
+      "user"
+    ],
     "sub": "00000000-0000-4000-8000-0000000000a1",
     "token_type": "Bearer",
     "two_factor": false,
@@ -26,7 +30,9 @@
     "kind": "user",
     "email": "ada@example.org",
     "name": "Ada",
-    "roles": ["user"],
+    "roles": [
+      "user"
+    ],
     "via": "tool",
     "actor": {
       "id": "mcp_6f1d0c2e",

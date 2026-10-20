@@ -18,7 +18,10 @@
     "kind": "user",
     "email": "ada@example.org",
     "name": "Ada Lovelace",
-    "roles": ["user", "editor"],
+    "roles": [
+      "user",
+      "editor"
+    ],
     "via": "tool",
     "actor": {
       "id": "mcp_6f1d0c2e",

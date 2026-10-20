@@ -9,7 +9,9 @@
     "kind": "user",
     "email": "ada@example.org",
     "name": "Ada",
-    "roles": ["user"],
+    "roles": [
+      "user"
+    ],
     "via": "session",
     "twoFactor": true,
     "twoFactorAt": "2026-10-20T11:45:00Z",

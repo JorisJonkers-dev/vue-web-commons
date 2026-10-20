@@ -17,11 +17,7 @@
     "kind": { "claim": "kind", "header": "X-Auth-Request-Kind" },
     "email": { "claim": "email", "header": "X-Auth-Request-Email" },
     "name": { "claim": "name", "header": "X-Auth-Request-Name" },
-    "roles": {
-      "claim": "roles",
-      "header": "X-Auth-Request-Roles",
-      "headerFormat": "comma-separated"
-    },
+    "roles": { "claim": "roles", "header": "X-Auth-Request-Roles", "headerFormat": "comma-separated" },
     "via": { "claim": "via", "header": "X-Auth-Request-Via" },
     "actor": {
       "claim": "act",
@@ -30,10 +26,7 @@
       "headerFormat": "actor.name"
     },
     "twoFactor": { "claim": "two_factor" },
-    "twoFactorAt": {
-      "claim": "two_factor_at",
-      "claimFormat": "NumericDate; the Principal states it as RFC 3339 UTC"
-    },
+    "twoFactorAt": { "claim": "two_factor_at", "claimFormat": "NumericDate; the Principal states it as RFC 3339 UTC" },
     "sid": { "claim": "sid" },
     "ver": { "claim": "ver" }
   },
