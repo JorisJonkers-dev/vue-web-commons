@@ -1,7 +1,7 @@
 {
   "name": "@jorisjonkers-dev/principal",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "Reads who is calling from identity's Principal contract, in a Node backend; a Vue app reads the same Principal type.",
   "license": "LicenseRef-JorisJonkers-Proprietary-1.0",
