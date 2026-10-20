@@ -8,3 +8,6 @@ CHANGELOG.md
 dist
 node_modules
 coverage
+
+# identity's Principal contract, vendored verbatim by packages/principal/scripts/pin-contract.sh.
+packages/principal/contract

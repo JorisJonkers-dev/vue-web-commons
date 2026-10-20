@@ -4,6 +4,9 @@
   "version": "0.8.0",
   "private": false,
   "packageManager": "npm@10.9.8",
+  "workspaces": [
+    "packages/principal"
+  ],
   "description": "Framework-neutral Vue 3 commons for Joris Jonkers web applications.",
   "license": "LicenseRef-JorisJonkers-Proprietary-1.0",
   "homepage": "https://github.com/JorisJonkers-dev/vue-web-commons#readme",
@@ -64,15 +67,15 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "typecheck": "vue-tsc --noEmit",
+    "typecheck": "vue-tsc --noEmit && npm run typecheck -w @jorisjonkers-dev/principal",
     "lint": "eslint . --max-warnings 0",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
-    "test": "vitest run --coverage",
+    "test": "vitest run --coverage && npm test -w @jorisjonkers-dev/principal",
     "coverage": "vitest run --coverage",
     "test:watch": "vitest",
     "build": "npm run clean && vite build && node scripts/normalize-dts.mjs && cp src/style.css.d.ts dist/style.css.d.ts && cp src/theme.css dist/theme.css && cp src/theme.css.d.ts dist/theme.css.d.ts",
-    "package:check": "npm run build && npm pack --dry-run && node scripts/check-package.mjs",
+    "package:check": "npm run build && npm pack --dry-run && node scripts/check-package.mjs && npm run build -w @jorisjonkers-dev/principal && npm pack --dry-run -w @jorisjonkers-dev/principal",
     "fixture:check": "npm run build && vue-tsc -p tsconfig.fixture.json --noEmit"
   },
   "peerDependencies": {
