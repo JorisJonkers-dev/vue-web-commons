@@ -1,0 +1,33 @@
+{
+  "name": "@jorisjonkers-dev/principal",
+  "type": "module",
+  "version": "0.0.0",
+  "private": false,
+  "description": "Reads who is calling from identity's Principal contract, in a Node backend; a Vue app reads the same Principal type.",
+  "license": "LicenseRef-JorisJonkers-Proprietary-1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorisJonkers-dev/vue-web-commons.git",
+    "directory": "packages/principal"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage"
+  },
+  "dependencies": {
+    "jose": "6.2.12"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.3"
+  }
+}
