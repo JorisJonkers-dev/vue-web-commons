@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.1](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.9.0...v0.9.1) (2026-10-21)
+
+
+### Bug Fixes
+
+* one release pull request per component, so each title carries its version ([#39](https://github.com/JorisJonkers-dev/vue-web-commons/issues/39)) ([da375cf](https://github.com/JorisJonkers-dev/vue-web-commons/commit/da375cf6dfbc3695cd355dbae05c11afd77a9bc3))
+
 ## [0.9.0](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.8.0...v0.9.0) (2026-10-20)
 
 
