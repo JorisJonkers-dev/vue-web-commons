@@ -30,7 +30,7 @@ jobs:
 
   node:
     name: Node CI
-    uses: JorisJonkers-dev/github-workflows/.github/workflows/node-ci.yml@v0.9.0
+    uses: JorisJonkers-dev/github-workflows/.github/workflows/node-ci.yml@583993e5865cd5b8761fe52db5843130fb107c51 # v0.34.2
     with:
       node-version: '22'
       package-manager: npm
