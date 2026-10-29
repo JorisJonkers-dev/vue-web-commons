@@ -25,10 +25,10 @@
     "test": "vitest run --coverage"
   },
   "dependencies": {
-    "jose": "6.2.12"
+    "jose": "6.2.13"
   },
   "devDependencies": {
-    "@types/node": "22.20.3"
+    "@types/node": "22.20.5"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
