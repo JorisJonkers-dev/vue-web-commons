@@ -30,8 +30,9 @@ jobs:
 
   node:
     name: Node CI
-    uses: JorisJonkers-dev/github-workflows/.github/workflows/node-ci.yml@f3bb6cabaa6ee33694f8632ce273a4e703d60780 # v0.38.0
+    uses: JorisJonkers-dev/github-workflows/.github/workflows/node-ci.yml@f8f0a5ae583913de18143bbbbe0db9ecab970435 # v0.45.0
     with:
+      require-package-proxy: true
       node-version: '22'
       package-manager: npm
       install-command: npm ci
@@ -41,6 +42,7 @@ jobs:
       build-command: npm run package:check && npm run fixture:check
     secrets:
       packages-token: ${{ secrets.GITHUB_TOKEN }}
+      PACKAGES_PROXY_TOKEN: ${{ secrets.PACKAGES_PROXY_TOKEN }}
 
   pipeline-complete:
     name: Pipeline Complete
