@@ -47,7 +47,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           ref: '${{ needs.release-please.outputs.tag_name }}'
-      - uses: JorisJonkers-dev/github-workflows/actions/setup-package-proxy@f8f0a5ae583913de18143bbbbe0db9ecab970435 # v0.45.0
+      - uses: JorisJonkers-dev/github-workflows/actions/setup-package-proxy@2814b76fc3f5bd4f02a6e4a0fa789f1307757daa # v0.45.4
         with:
           token: ${{ secrets.PACKAGES_PROXY_TOKEN }}
           require-package-proxy: true
@@ -89,7 +89,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           ref: '${{ needs.release-please.outputs.principal_tag_name }}'
-      - uses: JorisJonkers-dev/github-workflows/actions/setup-package-proxy@f8f0a5ae583913de18143bbbbe0db9ecab970435 # v0.45.0
+      - uses: JorisJonkers-dev/github-workflows/actions/setup-package-proxy@2814b76fc3f5bd4f02a6e4a0fa789f1307757daa # v0.45.4
         with:
           token: ${{ secrets.PACKAGES_PROXY_TOKEN }}
           require-package-proxy: true
