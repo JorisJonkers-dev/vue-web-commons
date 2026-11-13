@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.2](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.9.1...v0.9.2) (2026-11-13)
+
+
+### Bug Fixes
+
+* **hygiene:** never cancel a run of the required hygiene checks ([#54](https://github.com/JorisJonkers-dev/vue-web-commons/issues/54)) ([5151d19](https://github.com/JorisJonkers-dev/vue-web-commons/commit/5151d1994c4bbbce707c0ddf4ffa3d94e2b0f4e2))
+
 ## [0.9.1](https://github.com/JorisJonkers-dev/vue-web-commons/compare/v0.9.0...v0.9.1) (2026-10-21)
 
 
