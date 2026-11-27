@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.2](https://github.com/JorisJonkers-dev/vue-web-commons/compare/principal-v0.1.1...principal-v0.1.2) (2026-11-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency jose to v6.2.16 ([#60](https://github.com/JorisJonkers-dev/vue-web-commons/issues/60)) ([ca6b149](https://github.com/JorisJonkers-dev/vue-web-commons/commit/ca6b1495051653715931e1dd87015e23e3995bfa))
+* **deps:** update dependency jose to v6.2.18 ([#68](https://github.com/JorisJonkers-dev/vue-web-commons/issues/68)) ([14590e7](https://github.com/JorisJonkers-dev/vue-web-commons/commit/14590e7c3db20f3a29ccabaf5f0f5a573f7e2e4a))
+* **deps:** update minor and patch dependencies ([#63](https://github.com/JorisJonkers-dev/vue-web-commons/issues/63)) ([6009fa7](https://github.com/JorisJonkers-dev/vue-web-commons/commit/6009fa72be915a089c28e3cbd4d970be341783d9))
+
 ## [0.1.1](https://github.com/JorisJonkers-dev/vue-web-commons/compare/principal-v0.1.0...principal-v0.1.1) (2026-10-20)
 
 
